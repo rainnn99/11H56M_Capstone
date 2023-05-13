@@ -84,14 +84,14 @@ PRIMARY KEY(food_small_scale_classification)\
 # );")
 # ------------------------------------------------------
 
-# 선호음식 테이블
+# 비선호음식 테이블
 # ------------------------------------------------------
-# mycursor.execute("CREATE TABLE preferred_food(\
+# mycursor.execute("CREATE TABLE dislike_food(\
 # customer_id VARCHAR(12),\
 # food_small_scale_classification VARCHAR(12),\
-# CONSTRAINT preferred_food_PK PRIMARY KEY(customer_id, food_small_scale_classification),\
-# CONSTRAINT preferred_food_FK FOREIGN KEY (customer_id) references customer(id),\
-# CONSTRAINT preferred_food_FK2 FOREIGN KEY (food_small_scale_classification) references food(food_small_scale_classification)\
+# CONSTRAINT dislike_food_PK PRIMARY KEY(customer_id, food_small_scale_classification),\
+# CONSTRAINT dislike_food_FK FOREIGN KEY (customer_id) references customer(id),\
+# CONSTRAINT dislike_food_FK2 FOREIGN KEY (food_small_scale_classification) references food(food_small_scale_classification)\
 # );")
 # ------------------------------------------------------
 
