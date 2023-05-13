@@ -1,0 +1,807 @@
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text&family=Gothic+A1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Libre+Baskerville&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Libre+Baskerville&family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&family=Libre+Baskerville&family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+* {
+  /* font-family: "Crimson Text", serif; */
+  text-align: center;
+  user-select: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  /* background-color: white; */
+}
+/* .appCenter {
+  width: 1000px;
+  height: 100%;
+  margin: 0 auto;
+} */
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+.logo {
+  font-size: 40px;
+  /* color: #038d03; */
+  color: #f37500;
+  /* font-family:'Jua', sans-serif; */
+  /* font-family: 'Black Han Sans', sans-serif; */
+  font-family: 'Do Hyeon', sans-serif;
+  font-weight: 700;
+  height: 80px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.main1Total {
+  width: 100%;
+  height: 100%;
+  /* background-color: #cb58e7; */
+  /* background-color: #fc8719; 주황*/
+  background-color: #f78923; 
+}
+.main1 {
+  flex-direction: column;
+  height: 100%;
+  width: 1000px;
+  height: 100%;
+  margin: 0 auto;
+}
+.scrollText {
+  position: fixed;
+  bottom: 110px;
+  left: 48.5%;
+  /* transform: translateX(-50%); */
+  color:white;
+  font-size: 37px;
+  font-weight: 100;
+  font-family: 'Nanum Pen Script', cursive;
+  margin-right: 10px;
+  margin-top: 200px;
+}
+
+
+.floatingIcon {
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+}
+/* 메인 네브 */
+.mainNav {
+  background-color: #dd79f7;
+}
+.mainNavWrap {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  width: 1000px;
+  background-color: #f78923;
+}
+.mainLogo {
+  font-size: 40px;
+  color: white;
+  font-family: 'Black Han Sans', sans-serif;
+  margin-top: 30px;
+  text-align: left;
+}
+.appDownBtn {
+  width: 150px;
+  height: 50px;
+  margin-top: 35px;
+  margin-left: 360px;
+  background-color: white;
+  color: #f78923;
+  border: none;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 30px;
+  font-family: 'Do Hyeon', sans-serif;
+}
+.emoWrap {
+  display: flex;
+  flex-direction: row;
+  margin-top: 45px;
+  margin-left: 90px;
+  color: white;
+}
+.facebook {
+  margin-right: 15px;
+}
+.insta {
+  margin-right: 15px;
+}
+.kakao {
+  margin-right: 15px;
+}
+.logo {
+  margin-left: 100px;
+  width: 300px;
+}
+
+/* 서치 부분 */
+.searchWrap {
+  display: flex;
+  flex-direction: row;
+}
+.search {
+  width: 600px;
+  margin-left: 250px;
+  margin-top: 20px;
+  text-align: left;
+  /* justify-content: left; */
+}
+.btnSearch {
+  margin-top: 20px;
+  width: 50px;
+  height: 40px;
+  /* background-color: #009900; */
+  background-color: #f37500;
+  border-radius: 10px;
+  border: none;
+}
+.searchFont {
+  color: white;
+}
+.myFunc {
+  margin-top: 15px;
+  margin-left: 60px;
+}
+
+.btnSearch {
+  color: #f37500;
+}
+
+/* 마이 네브 */
+.myNav {
+  height: 80px;
+} 
+.navbarWrap {
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+}
+.navBasic {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 80px;
+
+}
+.logsignWrap {
+  display: flex;
+  flex-direction: row;
+  margin-top: 28px;
+  margin-left: 950px;
+}
+.logsignWrap .logIn {
+  margin-right: 25px;
+}
+
+.rightMenu {
+  display:flex;
+  flex-direction: row;
+  margin-left: 200px;
+  height: 80px;
+}
+
+/* 로그인 페이지*/
+.loginLogo {
+  margin-top: 100px;
+  font-size: 65px;
+  color: #f37500;
+  font-family: 'Do Hyeon', sans-serif;
+  font-weight: 500;
+}
+.loginText {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.inputSpace {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.logFunc {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 회원가입 페이지*/
+#signup_title {
+  text-align: center;
+  margin-top: 110px;
+  font-size : "50px";
+  font-family: 'Do Hyeon', sans-serif;
+}
+.signup {
+  padding: 0px 0px 0px 0%;
+  display: grid;
+}
+.signup div {
+  /* margin-top: 10px; */
+  text-align: center;
+}
+.signup div input { padding: 5px; }
+
+input[name=signup_birth] { width: 80px;}
+input[name=signup_birth2] { width: 20px; margin-left: 5px;}
+input[name=signup_email] { width : 120px }
+select[name=signup_emailselect] { padding: 3px; margin-left: 5px; }
+
+input[name=signup_num] {width: 200px;}
+
+
+input[name=sigunup_btn] { 
+  /* margin : 5% 46% 20% 46%;  */
+  margin-top: 60px;
+  margin-bottom: 200px;
+  font-size: 20px;
+  width: 250px;
+  height: 58px;
+  border-radius: 5px;
+  border: none;
+  background-color: #f37500; 
+  cursor: pointer;
+  color: white;
+}
+
+.line {
+  width: 640px;
+  margin-left:auto;
+  margin-right: auto;
+  margin-top: 50px;
+  height: 20px;
+  color: #000;
+}
+.signWrap {
+  margin-bottom: 30px;
+}
+.signup .pTag {
+  font-weight: bold;
+  margin: 0 auto;
+  font-size: 18px;
+}
+.signup .inputTag {
+  margin-top: 5px;
+  width: 350px;
+  height: 43px;
+  text-align: left;
+}
+.signRadio .signH5 {
+  margin-left: 5px;
+  margin-right: 20px;
+}
+
+.agreeWrap .agreeUse {
+  font-weight: bold;
+  font-size: 23px;
+}
+
+.floating-container {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 999;
+}
+
+.floating-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  background-color: white;
+  color: #f37500;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  
+}
+
+.floatingOpen {
+  display: block;
+  width: 200px;
+  height: 300px;
+  border-color: #000;
+}
+.surveyTop {
+  display: flex;
+  flex-direction: row;
+}
+
+.surveyTop .surveyTitle {
+  margin-left: 90px;
+} 
+
+.surveyClose {
+  margin-left: 230px;
+}
+
+/* 카테고리 */
+.categoryPage {
+  height: 100%;
+  background-color: white;
+}
+
+.categoryTitle {
+  /* color: #f37500; */
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: 55px;
+  margin-top: 60px;
+  margin-bottom: 70px;
+}
+.categoryWrap {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  justify-content: center;
+  width: 800px;
+  height: 450px;
+  background-color: rgb(241, 241, 241);
+  border-radius: 50px;
+}
+
+.kacWrap {
+  display: flex;
+  flex-direction: row; 
+  margin-top: 10px;
+  margin-left: 75px;
+  
+}
+.jnsWrap {
+  display: flex;
+  flex-direction: row;
+  margin-left: 75px;
+}
+.categoryItems {
+  width: 200px;
+  height: 180px;
+  /* background-color: white; */
+  /* margin-left: 50px;
+  margin-bottom: 40px; */
+  justify-content: center;
+  margin-right: 20px;
+  /* box-shadow:3px 3px 3px 3px #999; */
+  filter: drop-shadow(10px 6px 6px #c3c3c3);
+}
+
+
+.categoryText {
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: 30px;
+  margin-top: 5px;
+}
+
+#section1 {
+  background-color: #cb58e7;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#section2 {
+  background-color: lightpink;
+}
+
+#section3 {
+  background-color: coral;
+}
+
+#section4 {
+  background-color: rgb(25, 211, 211);
+}
+
+.appScreen {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow-y: hidden;
+}
+
+.dots {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  right: 300px;
+  transform: translateY(-50%);
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  margin: 15px 0;
+  border-radius: 50%;
+  background-color: rgb(179, 171, 171);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background-color: grey;
+}
+.mainContentWrap {
+  display: flex;
+  flex-direction: row;
+}
+.pWrap {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  animation: slide 1.5s ease-out;
+}
+@keyframes slide {
+  from{
+    margin-left:-100px;
+    opacity: 0;
+  }
+  to {
+    margin-left: 10px;
+    opacity: 1;
+  }
+}
+.m1icon {
+  margin-top: 250px;
+  margin-left: 150px;
+  color: white;
+}
+.m2icon {
+  margin-top: 250px;
+  margin-left: 130px;
+  color: white;
+}
+.m3icon {
+  margin-top: 250px;
+  margin-left: 150px;
+  color: white;
+}
+.m4icon {
+  margin-top: 250px;
+  margin-left: 130px;
+  color: white;
+}
+.s1Title {
+  text-align: left;
+  /* font-family: 'Black Han Sans', sans-serif; */
+  font-family: 'Do Hyeon', sans-serif;
+  /* font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 700; */
+  color: white;
+  font-size: 65px;
+  /* margin-left: 10px; */
+  margin-top: 80px;
+}
+.smallTitle {
+  text-align: left;
+  color: white;
+  /* margin-left: 10px; */
+}
+.btn1 {
+  width: 230px;
+  height: 40px;
+  /* margin-left: 10px; */
+  margin-top: 25px;
+  background-color:#f78923;
+  color: white;
+  border-style: solid;
+  border-color: white;
+  border-width: 1px;
+  font-size: 17px;
+  font-weight: 700;
+  border-radius: 30px;
+  left: 0;
+}
+
+.board {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.post {
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color: #fff;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  text-align: left;
+
+}
+
+.post h2 {
+  color: #000;
+  text-decoration: none;
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: left;
+
+}
+
+.post p {
+  font-size: 16px;
+  line-height: 1;
+  text-align: left;
+}
+.pageNumWrap {
+  margin:0 auto
+}
+#page-numbers {
+  display: flex;
+  list-style: none;
+  /* margin: 20px 0 0; */
+  margin:0 auto;
+  padding: 0;
+}
+
+#page-numbers li {
+  margin-right: 10px;
+  padding: 5px;
+  /* border: 1px solid #ccc;
+  border-radius: 4px; */
+  cursor: pointer;
+}
+
+#page-numbers li.active {
+  /* background-color: #333; */
+  color: #f37500;
+  /* border-color: #333; */
+  font-weight: 700;
+}
+.post-meta {
+  justify-content: space-between;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.post-num {
+  font-size: 18px;
+  /* font-weight: bold; */
+  margin-right: 5px;
+  margin-left: 10px;
+  color: #888;
+}
+
+.post-title {
+  font-size: 18px;
+  text-decoration: none;
+  color: black;
+  margin-left: 40px;
+  margin-right: 5px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.post-author {
+  font-size: 14px;
+  color: #888;
+  right: 0;
+}
+.underPosts {
+  width: 750px;
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+}
+.writeBtn {
+  width: 80px;
+  height: 40px;
+  background-color: #f37500;
+  color: white;
+  border:none;
+  border-radius: 10px;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.boardLogo {
+  /* margin-top: 10px; */
+  margin-bottom: 40px;
+  font-size: 40px;
+  color:#000;
+  font-family: 'Do Hyeon', sans-serif;
+  font-weight: 500;
+}
+.boardCategory {
+  display: flex;
+  justify-content: space-between;
+  width: 750px;
+  margin: 0 auto;
+}
+.board_id {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+}
+.board_title {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+
+}
+.board_search {
+  position: relative;
+  width: 170px;
+}
+.board_search .board_input {
+  width: 100%;
+  border: 1px solid rgb(134, 129, 129);
+  border-radius: 8px;
+  padding: 5px 7px;
+  font-size: 14px;
+  text-align: left;
+}
+.board_search .search_img {
+  position : absolute;
+  width: 20px;
+  top: 10px;
+  right: 12px;
+  margin: 0;
+}
+.boardHr {
+  width: 800px;
+  margin: 0 auto;
+  color: #000;
+  margin-top: 10px;
+}
+/* Modal창 */
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  position: absolute;
+  /* left: 100px;
+  top: 50%; 
+  transform: translate(-50%, -50%); */
+  background-color: #fefefe;
+  margin: 0 auto;
+  padding: 20px;
+  top: 13%;
+  border: 1px solid #888;
+  width: 300px;
+  height: 75%;
+  max-width: 800px;
+  overflow: auto; 
+  z-index: 1;
+  border-radius: 30px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 50px;
+  font-weight: bold;
+  position: absolute;
+  top: 3px;
+  right: 30px;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modalTitle {
+  font-family: 'Do Hyeon', sans-serif;
+  font-weight: 500;
+  font-size: 40px;
+}
+.writeTitle {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+.writeContent {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+.titleInput {
+  text-align: left;
+}
+.contentInput {
+  text-align: left;
+}
+.postWriteBtn {
+  display: fixed;
+  width: 150px;
+  height: 50px;
+  margin-top: 30px;
+  background-color: #f37500;
+  color: white;
+  border:none;
+  border-radius: 10px;
+  font-family: 'Noto Sans KR', sans-serif;
+  right: 0;
+}
+
+/* 캘린더 */
+.CalName {
+  font-family: 'Black Han Sans', sans-serif;
+  text-align: center;
+  margin-top:100px;
+}
+.CalName h1 {
+  font-size: 70px;
+  
+}
+.year {
+  
+  text-align: center;
+  font-size: 35px;
+  color: #f78923
+}
+
+/* 카테고리별 음식 */
+.FoodImg {
+  margin-top: 100px;
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: 50px;
+}
+.FoodName {
+  font-family: 'Black Han Sans', sans-serif;
+  text-align: center;
+  margin-top:100px;
+}
+.FoodName h1 {
+  font-size: 80px;
+}
+.FoodImg .row {
+  margin: 0 -10px;
+}
+
+.FoodImg .col {
+  padding: 10px;
+}
