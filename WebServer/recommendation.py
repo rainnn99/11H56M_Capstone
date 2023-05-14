@@ -2,30 +2,38 @@
 
 import pandas as pd
 import mysql.connector
+import random
 
 mydb = mysql.connector.connect(
     host="localhost",
-    user="root",
-    password="",
+    user="test",
+    password="test",
     database="food_recommendation"
 )
 mycursor = mydb.cursor()
 
+# 데이터베이스에서 모든 food_small_scale_classification 값 가져오기
+query = "SELECT DISTINCT food_small_scale_classification FROM your_table_name"
+mycursor.execute(query)
+results = mycursor.fetchall()
+
+# 추천할 값 선택 ->일단 랜덤으로 만들어둠 알고리즘 만들어서 수정
+recommendation = random.choice(results)[0]
+print("추천: ", recommendation)
+
 def get_userdata(name):
-    #customer_id로 식별 필요
-    mycursor.execute("SELECT food_small_scale_classification from dislike_food")
-    result = mycursor.fetchone()
+    query = "SELECT * FROM dislike_food WHERE customer_id = 'c_id'"
+    mycursor.execute(query)
+    result = mycursor.fetchall()
     return result
-    
 
 def recommandation(name):
     dislike = get_userdata(name)
     #추천 결과 배열에서 dislike와 겹치는거 하나씩 제거
     
-    
     return 0
 
-    
+
     
     
 
