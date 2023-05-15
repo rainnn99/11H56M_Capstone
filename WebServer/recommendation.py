@@ -1,5 +1,3 @@
-#음식추천 알고리즘 전처리, 결과 발송
-
 import user_recommendation
 
 import pandas as pd
@@ -22,6 +20,7 @@ food_data = pd.read_csv('food.csv')
 plethora = []
 
 #user_id입력받는 코드
+user_id = user_recommendation.get_username()
 
 #user_id 입력받아 query문에 넣고 실행하도록 수정해야함
 #mysql의 testdb의 calender table에서 user_id collum이 'aaa'인 데이터중 최근 30개를 가져와 user_taken_food 변수에 저장하는 코드
@@ -67,7 +66,7 @@ lack_ratio = lack_ratio.astype(int)
 
 deficient_nutrients = ['protein_g', 'fat_g', 'carbohydrate_g']
 
-# 부족한 영양소를 보완하는 음식 추천 함수
+# 부족한 영양소를 보완하는 음식 추천 함수(Knowledge-based Recommendation 사용)
 def recommend_food(taken_food, deficient_nutrients, deficient_levels, food_data, number=10):
     # 사용자의 최근 식사한 음식 데이터로 필터링
     filtered_foods = food_data[food_data['food_small_scale_classification'].isin(taken_food)]

@@ -1,5 +1,4 @@
-#음식추천 알고리즘만
-
+import recommendation
 import pandas as pd
 import mysql.connector
 import random
@@ -13,13 +12,18 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor()
 
 # 데이터베이스에서 모든 food_small_scale_classification 값 가져오기
-query = "SELECT DISTINCT food_small_scale_classification FROM your_table_name"
+query = "SELECT DISTINCT food_small_scale_classification FROM food"
 mycursor.execute(query)
 results = mycursor.fetchall()
 
 # 추천할 값 선택 ->일단 랜덤으로 만들어둠 알고리즘 만들어서 수정
-recommendation = random.choice(results)[0]
-print("추천: ", recommendation)
+
+#사용자 id 받아와야함
+user_id = ""
+#받아온 id 전달 코드
+
+def get_username():
+    return user_id
 
 def get_userdata(name):
     query = "SELECT * FROM dislike_food WHERE customer_id = 'c_id'"
@@ -27,11 +31,10 @@ def get_userdata(name):
     result = mycursor.fetchall()
     return result
 
-def recommandation(name):
+def user_recommandation(name):
     dislike = get_userdata(name)
-    #recommandation과 dislike배열을 비교하여 같은항목을 제거하는 코드
-    
-    #추천 결과 배열에서 dislike와 겹치는거 하나씩 제거
+    #recommandation과 dislike배열을 비교하여 같은항목을 제거하는 코드 -> recommendation으로 넘길 생각중
+    #목적 : 추천 결과 배열에서 dislike와 겹치는거 하나씩 제거
     
     return 0
 
