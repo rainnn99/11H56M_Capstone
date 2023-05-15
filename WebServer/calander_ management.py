@@ -1,5 +1,5 @@
 #캘린더
-
+import recommendation
 import pandas as pd
 import mysql.connector
 
@@ -41,6 +41,13 @@ def get_foodinfo(yearmonth):
 def get_foodnut(month_data):
     month_eat_foods_info = food_data[food_data['food_small_scale_classification'].isin([data[1] for data in month_data])]
     return month_eat_foods_info
+
+"""
+def push_plethora():
+    plethora = recommendation.plethora_info()
+    #프론트 캘린더로 push
+    #주간, 월간 반영 가능
+""" 
 
 #캘린더에서 요청이 들어오면 yearmonth값 받아 함수들 실행 및 데이터 전송하는 코드 필요(한달단위 예정)
 #주간단위나 일간단위 영양정보 관리 기능 필요시 코드 추가
