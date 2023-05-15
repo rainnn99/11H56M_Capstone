@@ -75,17 +75,13 @@ def sign_up():
     sex = request.args.get("sex")
     phone_number = request.args.get("phone_number")
     email = request.args.get("eamil")
-    job = request.args.get("job")
-    height = request.args.get("height")
-    weight = request.args.get("weight")
-    bmi = request.args.get("bmi")
 
-    sql = "INSERT INTO customer (id, password, name, birth, sex, phone_number, email, job, height, weight, bmi) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    sql = "INSERT INTO customer (id, password, name, birth, sex, phone_number, email) VALUES (%s, %s, %s, %s, %s, %s, %s)"
 
     with conn:
         with conn.cursor() as cur:
             cur.execute(sql, (id, password, name, birth, sex,
-                        phone_number, email, job, height, weight, bmi))
+                        phone_number, email))
             conn.commit()
 
     return redirect(url_for("login"))
@@ -122,9 +118,8 @@ def community_list():
 
     return render_template('community.html', row=row)
 
+
 # 음식추천
-
-
 @app.route('/food_recommendation', methods=['POST'])
 def food_recommendation():
     sql_preferred_food = "select * from preferred_food"
@@ -144,6 +139,3 @@ def food_recommendation():
     healthy_food = cur.fetchall()
 
     return render_template('recommendation.html', preferred_food=preferred_food, healthy_food=healthy_food)
-
-
-# 게임
