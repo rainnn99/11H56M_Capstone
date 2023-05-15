@@ -75,17 +75,13 @@ def sign_up():
     sex = request.args.get("sex")
     phone_number = request.args.get("phone_number")
     email = request.args.get("eamil")
-    job = request.args.get("job")
-    height = request.args.get("height")
-    weight = request.args.get("weight")
-    bmi = request.args.get("bmi")
 
-    sql = "INSERT INTO customer (id, password, name, birth, sex, phone_number, email, job, height, weight, bmi) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    sql = "INSERT INTO customer (id, password, name, birth, sex, phone_number, email) VALUES (%s, %s, %s, %s, %s, %s, %s)"
 
     with conn:
         with conn.cursor() as cur:
             cur.execute(sql, (id, password, name, birth, sex,
-                        phone_number, email, job, height, weight, bmi))
+                        phone_number, email))
             conn.commit()
 
     return redirect(url_for("login"))
