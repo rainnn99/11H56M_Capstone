@@ -29,6 +29,8 @@ def get_userdata(name):
 
 def recommandation(name):
     dislike = get_userdata(name)
+    #recommandation과 dislike배열을 비교하여 같은항목을 제거하는 코드
+    
     #추천 결과 배열에서 dislike와 겹치는거 하나씩 제거
     
     return 0
