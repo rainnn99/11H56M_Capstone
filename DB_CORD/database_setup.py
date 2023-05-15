@@ -56,66 +56,73 @@ PRIMARY KEY(food_small_scale_classification)\
 # ------------------------------------------------------
 
 
-# 고객 테이블(프론트에서 입력받는 항목 보고 수정 필요)
+# 고객 테이블
 # ------------------------------------------------------
-# mycursor.execute("CREATE TABLE customer(\
-# id VARCHAR(12) NOT NULL,\
-# password VARCHAR(20),\
-# name VARCHAR(4),\
-# birth DATE,\
-# sex CHAR(1),\
-# phone_number VARCHAR(11),\
-# email VARCHAR(30),\
-# job VARCHAR(15),\
-# height FLOAT,\
-# weight FLOAT,\
-# bmi FLOAT,\
-# CONSTRAINT customer_PK PRIMARY KEY(id)\
-# );")
+mycursor.execute("CREATE TABLE customer(\
+id VARCHAR(10) NOT NULL,\
+password VARCHAR(15),\
+name VARCHAR(20),\
+birth DATE,\
+sex CHAR(1),\
+phone_number VARCHAR(20),\
+email VARCHAR(25),\
+CONSTRAINT customer_PK PRIMARY KEY(id)\
+);")
 # ------------------------------------------------------
 
 # 질병 테이블
 # ------------------------------------------------------
-# mycursor.execute("CREATE TABLE disease(\
-# customer_id VARCHAR(12),\
-# disease VARCHAR(6),\
-# CONSTRAINT disease_PK PRIMARY KEY(customer_id, disease),\
-# CONSTRAINT disease_FK FOREIGN KEY (customer_id) references customer(id)\
-# );")
+mycursor.execute("CREATE TABLE disease(\
+customer_id VARCHAR(12),\
+disease VARCHAR(6),\
+CONSTRAINT disease_PK PRIMARY KEY(customer_id, disease),\
+CONSTRAINT disease_FK FOREIGN KEY (customer_id) references customer(id)\
+);")
 # ------------------------------------------------------
 
 # 비선호음식 테이블
 # ------------------------------------------------------
-# mycursor.execute("CREATE TABLE dislike_food(\
-# customer_id VARCHAR(12),\
-# food_small_scale_classification VARCHAR(12),\
-# CONSTRAINT dislike_food_PK PRIMARY KEY(customer_id, food_small_scale_classification),\
-# CONSTRAINT dislike_food_FK FOREIGN KEY (customer_id) references customer(id),\
-# CONSTRAINT dislike_food_FK2 FOREIGN KEY (food_small_scale_classification) references food(food_small_scale_classification)\
-# );")
+mycursor.execute("CREATE TABLE dislike_food(\
+customer_id VARCHAR(12),\
+food_small_scale_classification VARCHAR(12),\
+CONSTRAINT dislike_food_PK PRIMARY KEY(customer_id, food_small_scale_classification),\
+CONSTRAINT dislike_food_FK FOREIGN KEY (customer_id) references customer(id),\
+CONSTRAINT dislike_food_FK2 FOREIGN KEY (food_small_scale_classification) references food(food_small_scale_classification)\
+);")
 # ------------------------------------------------------
 
 # 건강식 테이블
 # ------------------------------------------------------
-# mycursor.execute("CREATE TABLE healthy_food(\
-# customer_id VARCHAR(12),\
-# food_small_scale_classification VARCHAR(12),\
-# CONSTRAINT healthy_food_PK PRIMARY KEY(customer_id, food_small_scale_classification),\
-# CONSTRAINT healthy_food_FK FOREIGN KEY (customer_id) references customer(id),\
-# CONSTRAINT healthy_food_FK2 FOREIGN KEY (food_small_scale_classification) references food(food_small_scale_classification)\
-# );")
+mycursor.execute("CREATE TABLE healthy_food(\
+customer_id VARCHAR(12),\
+food_small_scale_classification VARCHAR(12),\
+CONSTRAINT healthy_food_PK PRIMARY KEY(customer_id, food_small_scale_classification),\
+CONSTRAINT healthy_food_FK FOREIGN KEY (customer_id) references customer(id),\
+CONSTRAINT healthy_food_FK2 FOREIGN KEY (food_small_scale_classification) references food(food_small_scale_classification)\
+);")
 # ------------------------------------------------------
 
 # 커뮤니티
 # ------------------------------------------------------
-# mycursor.execute("CREATE TABLE community(\
-# serial_number INT AUTO_INCREMENT,\
-# customer_id VARCHAR(12),\
-# title TEXT,\
-# main_text TEXT,\
-# CONSTRAINT community_PK PRIMARY KEY(serial_number),\
-# CONSTRAINT community_FK FOREIGN KEY (customer_id) references customer(id)\
-# );")
+mycursor.execute("CREATE TABLE community(\
+serial_number INT AUTO_INCREMENT,\
+customer_id VARCHAR(12),\
+title TEXT,\
+main_text TEXT,\
+CONSTRAINT community_PK PRIMARY KEY(serial_number),\
+CONSTRAINT community_FK FOREIGN KEY (customer_id) references customer(id)\
+);")
+# ------------------------------------------------------
+
+# 캘린더
+# ------------------------------------------------------
+mycursor.execute("CREATE TABLE calender(\
+customer_id VARCHAR(12),\
+date DATE,\
+food TEXT,\
+CONSTRAINT calender_PK PRIMARY KEY(customer_id),\
+CONSTRAINT calender_FK FOREIGN KEY (customer_id) references customer(id)\
+);")
 # ------------------------------------------------------
 
 
