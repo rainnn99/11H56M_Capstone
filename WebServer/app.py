@@ -122,9 +122,8 @@ def community_list():
 
     return render_template('community.html', row=row)
 
+
 # 음식추천
-
-
 @app.route('/food_recommendation', methods=['POST'])
 def food_recommendation():
     sql_preferred_food = "select * from preferred_food"
@@ -144,6 +143,3 @@ def food_recommendation():
     healthy_food = cur.fetchall()
 
     return render_template('recommendation.html', preferred_food=preferred_food, healthy_food=healthy_food)
-
-
-# 게임
