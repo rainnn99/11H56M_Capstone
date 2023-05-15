@@ -16,8 +16,6 @@ query = "SELECT DISTINCT food_small_scale_classification FROM food"
 mycursor.execute(query)
 results = mycursor.fetchall()
 
-# 추천할 값 선택 ->일단 랜덤으로 만들어둠 알고리즘 만들어서 수정
-
 #사용자 id 받아와야함
 user_id = ""
 #받아온 id 전달 코드
