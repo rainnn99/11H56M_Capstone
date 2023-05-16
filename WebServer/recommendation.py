@@ -67,7 +67,7 @@ lack_ratio = lack_ratio.astype(int)
 deficient_nutrients = ['protein_g', 'fat_g', 'carbohydrate_g']
 
 # 부족한 영양소를 보완하는 음식 추천 함수(Knowledge-based Recommendation 사용)
-def recommend_food(taken_food, deficient_nutrients, deficient_levels, food_data, number=10):
+def recommend_food(taken_food, deficient_nutrients, deficient_levels, food_data, number=5):
     # 사용자의 최근 식사한 음식 데이터로 필터링
     filtered_foods = food_data[food_data['food_small_scale_classification'].isin(taken_food)]
 
