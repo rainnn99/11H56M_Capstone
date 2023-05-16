@@ -23,7 +23,6 @@ def insertEatFood():
     mycursor.execute(query, values)
     mydb.commit()
     mycursor.close()
-    
 
 #DB의 calander에서 고객이 먹은 식사 데이터 받아오기
 def get_foodinfo(yearmonth):
@@ -52,7 +51,5 @@ def push_plethora():
 #캘린더에서 요청이 들어오면 yearmonth값 받아 함수들 실행 및 데이터 전송하는 코드 필요(한달단위 예정)
 #주간단위나 일간단위 영양정보 관리 기능 필요시 코드 추가
     
-    
 mycursor.close()
 mydb.close()
-

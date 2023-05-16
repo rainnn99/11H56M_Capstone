@@ -3,6 +3,7 @@
 from flask import Flask, render_template, url_for, session, request, redirect
 import sys
 import pymysql
+import user_recommendation, recommendation, calender_management, login, logout, sign_up, community_writing, community_list
 
 app = Flask(__name__)
 app.secret_key = "lfko2dfk5-!fgkfiapvn4"
@@ -37,30 +38,38 @@ def home():
 # def login():
 #    return render_template('login.html')
 @app.route('/login', methods=["post"])
-
+def login():
+    login()
 
 # 로그아웃
 @app.route('/logout')
-
+def logout():
+    logout()
 
 # 회원가입
-@app.route('/signup', methods=['POST'])
-
+@app.route('/sign_up', methods=['POST'])
+def sign_up():
+    sign_up()
 
 
 # 커뮤니티_글작성
 @app.route('/community_writing', methods=['POST'])
-
+def community_writing():
+    community_writing()
 
 
 # 커뮤니티_글목록
 @app.route('/community_list', methods=['POST'])
-
+def community_list():
+    community_list()
 
 
 # 음식추천
-#@app.route('/food_recommendation', methods=['POST'])
-
+@app.route('/user_recommendation', methods=['POST'])
+def user_recommendation():
+    user_recommendation()
 
 #캘린더
-#@app.route('/calander_managment')
+@app.route('/calender_management')
+def calender_management():
+    calender_management()
