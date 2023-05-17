@@ -53,4 +53,3 @@ def push_plethora():
     
 mycursor.close()
 mydb.close()
-
