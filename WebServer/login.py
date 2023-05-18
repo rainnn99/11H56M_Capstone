@@ -1,28 +1,30 @@
 from flask import Flask, render_template, url_for, session, request, redirect
 import sys
-import pymysql
+import mysql.connector
 
-conn = pymysql.connect(host='localhost',
-                       user='root',
-                       password='',  # 비밀번호
-                       db='food_recommendation',
-                       charset='utf8')
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="",  # 비밀번호
+)
+mycursor = mydb.cursor()
+mycursor.execute("USE test")
 
 # 로그인
 # 아이디 비밀번호 확인
 
 def login():
-    id = request.args.get("id")
-    password = request.args.get("password")
+    id = request.form['id']
+    password = request.form['password']
 
-    with conn:
-        with conn.cursor() as cursor:
-            cursor.execute(
-                'SELECT * FROM customer WHERE username = %s AND password = %s', (id, password))
-            user = cursor.fetchone()
+    sql = "SELECT * FROM customer WHERE id = " + \
+        str(id) + " AND password = " + str(password)
 
-    if user:
-        session['id'] = user[1]
-        return redirect(url_for("home"))
+    mycursor.execute(sql)
+
+    user = mycursor.fetchone()
+
+    if user != None:
+        return True  # 로그인 성공
     else:
-        return redirect(url_for("home"))
+        return False  # 로그인 실패
