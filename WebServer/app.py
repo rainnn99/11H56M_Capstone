@@ -30,18 +30,19 @@ if __name__ == "__main__":
 @app.route('/')
 def home():
     if 'id' in session:
-        return render_template('home.html', login=True)
+        return render_template('home.html', login=1)
     else:
-        return render_template("home.html", login=False)
+        return render_template("home.html", login=0)
 
 
 # 로그인
-# @app.route('/login')
-# def login():
-#    return render_template('login.html')
 @app.route('/login', methods=["post"])
-def login():
-    login()
+def login_check():
+    returnvalue = login.login()
+    if returnvalue == True:
+        return str(1)  # 성공
+    else:
+        return str(0)  # 실패
 
 # 로그아웃
 @app.route('/logout')
@@ -84,9 +85,9 @@ def community_list():
 
 
 # 음식추천
-@app.route('/user_recommendation', methods=['POST'])
-def user_recommendation():
-    user_recommendation()
+@app.route('/recommendation', methods=['POST'])
+def recommendation():
+    recommendation()
 
 #캘린더
 @app.route('/calender_management')
