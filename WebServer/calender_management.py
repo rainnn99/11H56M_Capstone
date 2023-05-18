@@ -37,12 +37,14 @@ def get_foodnut(month_data):
     month_eat_foods_info = [row[:1] + row[2:] for row in sliceing_buffer]
     return month_eat_foods_info
 
+#캘린더에서 정보 가져오기 실행
 def run_calender_get(date, userid):
     month_data = get_foodinfo(date, userid)
     foodinfo = get_foodnut(month_data)
     print(foodinfo)
     return foodinfo
 
+#캘린더에 데이터 삽입 실행
 def run_calender_insert(date, userid, taken_food):
     insert_eat_food(date, userid, taken_food)
     
