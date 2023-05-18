@@ -1,23 +1,37 @@
 from flask import Flask, render_template, url_for, session, request, redirect
 import sys
-import pymysql
+import mysql.connector, json
 
-conn = pymysql.connect(host='localhost',
-                       user='root',
-                       password='',  # 비밀번호
-                       db='food_recommendation',
-                       charset='utf8')
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="",        #비밀번호
+)
+mycursor = mydb.cursor()
+mycursor.execute("USE test")
 
 
 # 커뮤니티_글목록
 def community_list():
 
-    sql = "select * from community"
+    sql = "SELECT * FROM community"
 
-    with conn:
-        with conn.cursor() as cur:
-            cur.execute(sql)
+    mycursor.execute(sql)
+    row = mycursor.fetchall()
 
-    row = cur.fetchall()
+    result = []
+    if len(row) > 0:
+        for i in range(len(row)):
+            data = {
+                'serial_number': row[i][0],
+                'id': row[i][1],
+                'title': row[i][2]
+            }
+            result.append(data)
+        community_list_json = json.dumps(result)
 
-    return render_template('community.html', row=row)
+        #print(community_list_json)
+    else:
+        print("No data found.")
+
+    return community_list_json
