@@ -1,19 +1,21 @@
 # pip install Flask
 
-from flask import Flask, render_template, url_for, session, request, redirect
+from flask import Flask, render_template, url_for, session, request, redirect, jsonify
 import sys
-import pymysql
-import user_recommendation, recommendation, calender_management, login, logout, sign_up, community_writing, community_list
+import mysql.connector
+import recommendation, calender_management, login, logout, sign_up, community_writing, community_list, mypage, json
 
 app = Flask(__name__)
 app.secret_key = "lfko2dfk5-!fgkfiapvn4"
 
 
-conn = pymysql.connect(host='localhost',
-                       user='root',
-                       password='',  # 비밀번호
-                       db='food_recommendation',
-                       charset='utf8')
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="",        #비밀번호
+)
+mycursor = mydb.cursor()
+mycursor.execute("USE food_recommendation")
 
 
 def main():
@@ -51,6 +53,11 @@ def logout():
 def sign_up():
     sign_up()
 
+#마이페이지
+@app.route('/{userid}/mypage', methods=["POST"])
+def mypage(userid):
+    mypage(userid)
+
 
 # 커뮤니티_글작성
 @app.route('/community_writing', methods=['POST'])
@@ -59,9 +66,21 @@ def community_writing():
 
 
 # 커뮤니티_글목록
-@app.route('/community_list', methods=['POST'])
+@app.route('/community_lists', methods=['GET'])
 def community_list():
-    community_list()
+    community_list_json = community_list.community_list()  # json 보내는 코드
+
+    # 역슬래시 제거
+    community_list_json = community_list_json.replace('\\', '')
+
+    # JSON 데이터 파싱
+    parsed_community_list_json = json.loads(community_list_json)
+
+    # JSON 문자열 생성 (구분자 지정)
+    parsed_community_list_json = json.dumps(
+        parsed_community_list_json, separators=(',', ':'))
+
+    return jsonify(community_list_json)
 
 
 # 음식추천
