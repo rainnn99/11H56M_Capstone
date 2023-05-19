@@ -93,13 +93,13 @@ CONSTRAINT dislike_food_FK2 FOREIGN KEY (food_small_scale_classification) refere
 
 # 건강식 테이블
 # ------------------------------------------------------
-mycursor.execute("CREATE TABLE healthy_food(\
-customer_id VARCHAR(12),\
-food_small_scale_classification VARCHAR(12),\
-CONSTRAINT healthy_food_PK PRIMARY KEY(customer_id, food_small_scale_classification),\
-CONSTRAINT healthy_food_FK FOREIGN KEY (customer_id) references customer(id),\
-CONSTRAINT healthy_food_FK2 FOREIGN KEY (food_small_scale_classification) references food(food_small_scale_classification)\
-);")
+#mycursor.execute("CREATE TABLE healthy_food(\
+#customer_id VARCHAR(12),\
+#food_small_scale_classification VARCHAR(12),\
+#CONSTRAINT healthy_food_PK PRIMARY KEY(customer_id, food_small_scale_classification),\
+#CONSTRAINT healthy_food_FK FOREIGN KEY (customer_id) references customer(id),\
+#CONSTRAINT healthy_food_FK2 FOREIGN KEY (food_small_scale_classification) references food(food_small_scale_classification)\
+#);")
 # ------------------------------------------------------
 
 # 커뮤니티
