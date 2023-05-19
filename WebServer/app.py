@@ -18,12 +18,6 @@ mycursor = mydb.cursor()
 mycursor.execute("USE food_recommendation")
 
 
-def main():
-    app.run(host='0.0.0.0', port=5000)
-
-
-if __name__ == "__main__":
-    main()
 
 
 #  홈화면
@@ -77,7 +71,7 @@ def Community_writing():
 
 # 커뮤니티_글목록
 @app.route('/community/lists', methods=['GET'])
-def community_list():
+def Community_list():
     community_list_json = community_list.community_list()  # json 보내는 코드
 
     # 역슬래시 제거
@@ -102,3 +96,6 @@ def recommendation():
 @app.route('/calender_management')
 def calender_management():
     calender_management()
+
+
+app.run(port=5000)
