@@ -8,7 +8,7 @@ mydb = mysql.connector.connect(
     password="",  # 비밀번호
 )
 mycursor = mydb.cursor()
-mycursor.execute("USE test")
+mycursor.execute("USE food_recommendation")
 
 # 로그인
 # 아이디 비밀번호 확인

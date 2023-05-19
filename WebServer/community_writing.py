@@ -8,7 +8,7 @@ mydb = mysql.connector.connect(
     password="",
 )
 mycursor = mydb.cursor()
-mycursor.execute("USE test")
+mycursor.execute("USE food_recommendation")
 
 
 # 커뮤니티_글작성
