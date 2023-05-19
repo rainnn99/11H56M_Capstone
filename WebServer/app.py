@@ -40,34 +40,43 @@ def home():
 def login_check():
     returnvalue = login.login()
     if returnvalue == True:
+        session['id']=request.form['id']
         return str(1)  # 성공
     else:
         return str(0)  # 실패
 
 # 로그아웃
 @app.route('/logout')
-def logout():
-    logout()
+def Logout():
+    logout.logout()
+    return render_template('home.html')
 
 # 회원가입
 @app.route('/sign_up', methods=['POST'])
-def sign_up():
-    sign_up()
+def Sign_up():
+    sign_up.sign_up()
+    return render_template("home.html")
+
 
 #마이페이지
-@app.route('/{userid}/mypage', methods=["POST"])
-def mypage(userid):
-    mypage(userid)
+#@app.route('/{userid}/mypage', methods=["POST"])
+#def mypage(userid):
+#    mypage(userid)
 
 
 # 커뮤니티_글작성
-@app.route('/community_writing', methods=['POST'])
-def community_writing():
-    community_writing()
+@app.route('/community/{userid}/new-writing', methods=['POST'])
+def Community_writing():
+    userid = session.get("id")
+    if userid != None:
+        community_writing.community_writing()
+        return render_template("community_lists.html")
+    else:
+        return render_template("home.html")
 
 
 # 커뮤니티_글목록
-@app.route('/community_lists', methods=['GET'])
+@app.route('/community/lists', methods=['GET'])
 def community_list():
     community_list_json = community_list.community_list()  # json 보내는 코드
 
