@@ -1,25 +1,26 @@
 from flask import Flask, render_template, url_for, session, request, redirect
 import sys
-import pymysql
+import mysql.connector
 
-conn = pymysql.connect(host='localhost',
-                       user='root',
-                       password='',  # 비밀번호
-                       db='food_recommendation',
-                       charset='utf8')
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="capstone",
+    password="",
+)
+mycursor = mydb.cursor()
+mycursor.execute("USE test")
 
 
 # 커뮤니티_글작성
 def community_writing():
-    id = request.args.get("id")
-    title = request.args.get("title")
-    main_text = request.args.get("main_text")
+    userid = session.get("id")
+    title = request.form['title']
+    main_text = request.form['main_text']
 
-    sql = "INSERT INTO community (id, title, main_text) VALUES (%s, %s, %s)"
+    sql = "INSERT INTO community (customer_id, title, main_text) VALUES (%s, %s, %s)"
+    val = (userid, title, main_text)
 
-    with conn:
-        with conn.cursor() as cur:
-            cur.execute(sql, (id, title, main_text))
-            conn.commit()
+    mycursor.execute(sql, val)
+    mydb.commit()
 
-    return redirect(url_for("community_list"))
+    return
