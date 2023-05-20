@@ -28,7 +28,7 @@ function PostList() {
   // };
   const axiosPosts = async () => {
     try {
-      const response = await axios.get("https://jsonplaceholder.typicode.com/posts");
+      const response = await axios.get("/community/lists");
       setPosts(response.data);
     } catch (error) {
       console.error(error);

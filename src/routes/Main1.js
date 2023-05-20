@@ -11,6 +11,9 @@ import { AiOutlineMessage } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
 import { MdOutlineFoodBank } from "react-icons/md";
 import { BsPersonFill } from "react-icons/bs";
+import { RiCoupon3Line } from "react-icons/ri";
+import Survey from './Survey';
+
 
 function Main1() {
 
@@ -86,8 +89,10 @@ function Main1() {
               {/* <div className="scrollText">스크롤</div> */}
           
              {!isOpen && ( //설문조사창이 열려있지 않으면 floating Icon 뜸
-              <div
+              <div className='floatingCoupon'
                 style={{
+                  display:'flex',
+                  flexDirection:'column',
                   position: 'fixed',
                   bottom: '50px',
                   right: '40px',
@@ -104,8 +109,8 @@ function Main1() {
                   
                 }}
                 onClick={toggleSurveyForm} //클릭하면 toggleSurveyForm 함수가 호출되어 isOpen값이 반전되어 ServeyForm으로
-              ><AiOutlineMessage size={30} style={{width:"30px", height:"30px"}}/>
-                <i className="fa fa-question-circle fa-lg" />
+              > <RiCoupon3Line size={30} style={{width:"30px", height:"30px"}}/>
+                <i className="fa fa-question-circle fa-lg" /><p className='coupon_text' style={{marginBottom:"0px"}}>쿠폰</p>
               </div>
              )}
 
@@ -116,10 +121,11 @@ function Main1() {
                   position: 'fixed',
                   bottom: '20px',
                   right: '20px',
-                  width: '300px',
-                  height: '500px',
+                  width: '420px',
+                  height: '900px',
                   backgroundColor: '#fff',
-                  boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+                  // boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+                  boxShadow: '10px 10px 15px gray',
                   borderRadius: '10px',
                   padding: '20px',
                   zIndex: '9999',
@@ -132,22 +138,7 @@ function Main1() {
               
                 {/* 설문조사창 안에 콘텐츠 부분 */}
                 <form>
-                <h5 className="surveyTitle" style={{ textAlign: 'center', marginTop:'10px', fontWeight:'bold'}}>고객님의 소중한 의견을 <br/>저희에게 들려주세요</h5>
-                  <div style={{ marginBottom: '10px' , marginTop:'50px'}}>
-                    <label htmlFor="name">이름</label>
-                    <input type="text" name="name" id="name" />
-                  </div>
-                  <div style={{ marginBottom: '10px' }}>
-                    <label htmlFor="email">이메일</label>
-                    <input type="email" name="email" id="email" />
-                  </div>
-                  <div style={{ marginBottom: '10px' }}>
-                    <label htmlFor="feedback">의견</label>
-                    <textarea name="feedback" id="feedback" />
-                  </div>
-                  <button type="submit" style={{ width: '60px' }}>
-                    제출
-                  </button>
+                  <Survey />
                 </form>
               </div>
             )}

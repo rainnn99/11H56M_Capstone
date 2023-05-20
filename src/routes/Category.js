@@ -37,7 +37,7 @@ function Category() {
         <div className="jnsWrap">
           <div className="categoryItems">
             <img src="/img7.png" style={{width:"130px", height:"130px"}} onClick={() => {
-                          navigate("/weternfood");
+                          navigate("/westernfood");
                       }}></img>
             <p className="categoryText">양식</p>
           </div>

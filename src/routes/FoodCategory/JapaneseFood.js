@@ -32,7 +32,7 @@ function JapaneseFood() {
                   <Figure.Image
                     src={photo.src}
                     thumbnail
-                    style={{ width: "400px", height: "450px", border: "none" }}
+                    style={{ width: "350px", height: "450px", border: "none" }}
                   />
                   <Figure.Caption>{photo.caption}</Figure.Caption>
                 </Figure>

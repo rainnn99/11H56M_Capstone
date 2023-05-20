@@ -32,7 +32,7 @@ function AsianFood() {
                   <Figure.Image
                     src={photo.src}
                     thumbnail
-                    style={{ width: "400px", height: "450px", border: "none" }}
+                    style={{ width: "250px", height: "300px", border: "none" }}
                   />
                   <Figure.Caption>{photo.caption}</Figure.Caption>
                 </Figure>

@@ -62,27 +62,25 @@ function Main2() {
                 <div className='mainContentWrap'>
                   <div ref={pWrapRef} className='pWrap'>
                       <p className="s1Title">
-                          못 고를 땐<br />
-                          '게임'으로<br />
-                          정하자!
+                          <span className="text_black">"Ai로"</span><br />
+                          내 <span className="text_yellow">건강</span>에 맞춰<br />
+                          <span className="text_black">음식 추천</span>까지!
                       </p>
                       <div className="smallTitle">
-                          이것도 괜찮고 <br />
-                        저것도 괜찮아? <br />
-                        친구들과 메뉴 못 정할 때는 이거다!
+                        최근 캘린더에 입력한 <span className="ai_bold">30일간 먹은 음식들중</span> <br />
+                        <span className="ai_bold">부족한 영양소</span>를 선별하여 <span className="ai_bold">채워줄 수 있는</span> <br />
+                        <span className="ai_bold">음식 추천</span> 기능을 이거 먹자에서!
                       </div>
                       <button className='btn1' onClick={() => {
-                          navigate("/postlist");
-                      }}>게임하러가기 →</button>
+                          navigate("/game");
+                      }}>Ai한테 음식 추천 받기 →</button>
                   </div>
 
                   <div className='m3icon'>
-                  <img src='./main3_img.png' width={480} height={450}></img>
+                    <img src='./main3_img.png' width={480} height={450}></img>
                   </div>
                 </div>
                     
-
-                
             </div>    
         </div>
     );

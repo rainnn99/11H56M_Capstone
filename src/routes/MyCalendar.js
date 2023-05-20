@@ -1,6 +1,7 @@
 import { Calendar, Button } from 'antd';
 import { useState } from 'react';
 import MyModal from './MyModal';
+import MyNav from "./../MyNav";
 
 function MyCalendar() {
   const [visible, setVisible] = useState(false);
@@ -19,21 +20,35 @@ function MyCalendar() {
   const dateCellRender = (value) => {
     const dateString = value.format('YYYY-MM-DD');
     const dayData = data[dateString];
-
+  
+    const handleEdit = () => {
+      setSelectedDate(value);
+      setVisible(true);
+    };
+    
+    let totalAmount = 0;
+    if(dayData) {
+      totalAmount = parseInt(dayData.breakfastValue) + parseInt(dayData.lunchValue) + parseInt(dayData.dinnerValue);
+    }
     return (
       <div>
-        {dayData && (
+        {/* <MyNav /> */}
+        {dayData ? (
           <div>
-            <p style={{marginBottom:"0px"}}>아침: {dayData.breakfast}</p>
-            <p style={{marginBottom:"0px"}}>점심: {dayData.lunch}</p>
-            <p style={{marginBottom:"0px"}}>저녁: {dayData.dinner}</p>
-            <p style={{marginBottom:"0px"}}>Kcal: </p>
+            <p style={{ marginBottom: "0px", textAlign: "left"}}><span className='calendarMenu'>아침 </span> {dayData.breakfast}</p>
+            <p style={{ marginBottom: "0px", textAlign: "left" }}><span className='calendarMenu'>점심 </span>{dayData.lunch}</p>
+            <p style={{ marginBottom: "0px", textAlign: "left" }}><span className='calendarMenu'>저녁 </span>{dayData.dinner}</p>
+            <p style={{ marginBottom: "0px", textAlign: "left" }}><span className='calendar_kcal'>Kcal </span>{dayData.kcal}</p>
+            <p style={{ marginBottom: "0px", textAlign: "left" }}><span className='calendarMenu'>총 식비: </span>{totalAmount}</p>
+            <Button type="dashed" onClick={handleEdit} style={{ marginTop: 10, textAlign: "right" }}>수정</Button>
           </div>
+        ) : (
+          <Button type="dashed" onClick={() => handleSelect(value)} style={{ marginTop: 10, textAlign: "right" }}>추가</Button>
         )}
-        <Button type="dashed" onClick={() => handleSelect(value)}>추가</Button>
       </div>
     );
   };
+  
 
   const saveData = (date, newData) => {
     const dateString = date.format('YYYY-MM-DD');
@@ -46,22 +61,22 @@ function MyCalendar() {
   return (
     <div>
       <div className="CalName">
-        <h1>이번 달 내가 먹은건?</h1>
+        <h1>나의 식단 캘린더</h1>
       </div>
       <div>
         <Calendar
           style={{ maxWidth: '1100px', margin: '0 auto', border: 'none' }}
           dateCellRender={dateCellRender}
           headerRender={({ value, type, onChange }) => {
-            const year = value.format('YYYY');
+            // const year = value.format('YYYY');
             const month = value.format('M월');
 
             return (
               <div style={{ padding: 10, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div className="year" style={{ marginRight: 'auto' }}>{`${year}년 ${month}`}</div>
+                <div className="year" style={{ marginRight: 'auto' }}>{`${month}`}</div>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <Button type="ghost" style={{ borderColor: '#f78923', color: '#f78923', margin: '0 20px' }} onClick={() => onChange(value.clone().subtract(1, type))}>◀</Button>
-                  <Button type="ghost" style={{ borderColor: '#f78923', color: '#f78923' }} onClick={() => onChange(value.clone().add(1, type))}>▶</Button>
+                  <Button type="ghost" style={{ borderColor: 'black', color: 'black', margin: '0 20px' }} onClick={() => onChange(value.clone().subtract(1, type))}>◀</Button>
+                  <Button type="ghost" style={{  borderColor: 'black', color: 'black' }} onClick={() => onChange(value.clone().add(1, type))}>▶</Button>
                 </div>
               </div>
             )
