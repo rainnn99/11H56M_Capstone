@@ -117,11 +117,13 @@ CONSTRAINT community_FK FOREIGN KEY (customer_id) references customer(id)\
 # 캘린더
 # ------------------------------------------------------
 mycursor.execute("CREATE TABLE calender(\
-customer_id VARCHAR(12),\
+user_id VARCHAR(12),\
 day INT,\
-food TEXT,\
-CONSTRAINT calender_PK PRIMARY KEY(customer_id),\
-CONSTRAINT calender_FK FOREIGN KEY (customer_id) references customer(id)\
+taken_food_morning TEXT,\
+taken_food_lunch TEXT,\
+taken_food_dinner TEXT,\
+CONSTRAINT calender_PK PRIMARY KEY(user_id),\
+CONSTRAINT calender_FK FOREIGN KEY (user_id) references customer(id)\
 );")
 # ------------------------------------------------------
 
