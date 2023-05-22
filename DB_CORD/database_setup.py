@@ -30,13 +30,13 @@ import mysql.connector
 
 mydb = mysql.connector.connect(
     host="localhost",
-    user="root",
+    user="",
     password=""  # 비밀번호
 )
 
 mycursor = mydb.cursor()
-mycursor.execute("create database food_recommendation;")  # 데이터베이스 만들기
-mycursor.execute("USE food_recommendation")
+mycursor.execute("create database test;")  # 데이터베이스 만들기
+mycursor.execute("USE test")
 
 # 음식 테이블
 # ------------------------------------------------------
@@ -70,15 +70,6 @@ CONSTRAINT customer_PK PRIMARY KEY(id)\
 );")
 # ------------------------------------------------------
 
-# 질병 테이블
-# ------------------------------------------------------
-mycursor.execute("CREATE TABLE disease(\
-customer_id VARCHAR(12),\
-disease VARCHAR(6),\
-CONSTRAINT disease_PK PRIMARY KEY(customer_id, disease),\
-CONSTRAINT disease_FK FOREIGN KEY (customer_id) references customer(id)\
-);")
-# ------------------------------------------------------
 
 # 비선호음식 테이블
 # ------------------------------------------------------
@@ -91,16 +82,7 @@ CONSTRAINT dislike_food_FK2 FOREIGN KEY (food_small_scale_classification) refere
 );")
 # ------------------------------------------------------
 
-# 건강식 테이블
-# ------------------------------------------------------
-#mycursor.execute("CREATE TABLE healthy_food(\
-#customer_id VARCHAR(12),\
-#food_small_scale_classification VARCHAR(12),\
-#CONSTRAINT healthy_food_PK PRIMARY KEY(customer_id, food_small_scale_classification),\
-#CONSTRAINT healthy_food_FK FOREIGN KEY (customer_id) references customer(id),\
-#CONSTRAINT healthy_food_FK2 FOREIGN KEY (food_small_scale_classification) references food(food_small_scale_classification)\
-#);")
-# ------------------------------------------------------
+
 
 # 커뮤니티
 # ------------------------------------------------------
@@ -119,9 +101,8 @@ CONSTRAINT community_FK FOREIGN KEY (customer_id) references customer(id)\
 mycursor.execute("CREATE TABLE calender(\
 user_id VARCHAR(12),\
 day INT,\
-taken_food_morning TEXT,\
-taken_food_lunch TEXT,\
-taken_food_dinner TEXT,\
+taken_food TEXT,\
+time INT,\
 CONSTRAINT calender_PK PRIMARY KEY(user_id),\
 CONSTRAINT calender_FK FOREIGN KEY (user_id) references customer(id)\
 );")
