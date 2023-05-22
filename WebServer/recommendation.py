@@ -112,4 +112,4 @@ def run_recommendation(userid):
     print(recommended_foods)
     return recommended_foods
 
-mycursor.close()
+#mycursor.close()
