@@ -62,10 +62,7 @@ mycursor.execute("CREATE TABLE customer(\
 id VARCHAR(10) NOT NULL,\
 password VARCHAR(15),\
 name VARCHAR(20),\
-birth DATE,\
-sex CHAR(1),\
 phone_number VARCHAR(20),\
-email VARCHAR(25),\
 CONSTRAINT customer_PK PRIMARY KEY(id)\
 );")
 # ------------------------------------------------------
