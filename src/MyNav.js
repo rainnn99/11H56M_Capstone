@@ -78,84 +78,35 @@ function MyNav() {
               </button>
             </div> */}
 
-            <div className="rightMenu">
-            <div className="logsignWrap">
-              <Nav.Link className="logIn"
-               onClick={() => {
-                  navigate("/login");
-               }}
-              >로그인</Nav.Link>
-              <Nav.Link className="signUp"
-                onClick={() => {
-                  navigate("/signup");
-              }}
-              >회원가입</Nav.Link>
-            </div>
+            {/* <div className="rightMenu">
+              <div className="myFunc">
+                <IconButton
+                  size="large"
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  <Badge badgeContent={17} color="error">
+                    <ShoppingCartIcon onClick={() => {
+                    navigate("/cart");
+                }}/>
+                  </Badge>
+                </IconButton>
 
-            <div className="myFunc">
-              <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                <Badge badgeContent={17} color="error">
-                  <ShoppingCartIcon onClick={() => {
-                  navigate("/cart");
-              }}/>
-                </Badge>
-              </IconButton>
-
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-haspopup="true"
-                color="inherit"
-              >
-                <AccountCircle onClick={() => {
-                  navigate("/mypage");
-              }} />
-              </IconButton>
-            </div>  
-            </div>
-
-            
-
-          </div>
-
- 
-          {/* <div className="navMenu">
-            <Navbar className="navmenuWrap">
-              <Nav.Link className="home"
-               onClick={() => {
-                  navigate("/");
-               }}
-              >
-                홈
-              </Nav.Link>
-              <Nav.Link className="intro" >
-                식당/음식점
-              </Nav.Link>
-              <Nav.Link className="rest" 
-                onClick={() => {
-                  navigate("/restaurant");
-               }}
-              >
-                카페
-              </Nav.Link>
-              <Nav.Link className="comm" >
-                건강식
-              </Nav.Link>
-              <Nav.Link className="shop" 
-              onClick={() => {
-                navigate("/community");
-             }}>
-                커뮤니티
-              </Nav.Link>
-            </Navbar>
-          </div> */}
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-haspopup="true"
+                  color="inherit"
+                >
+                  <AccountCircle onClick={() => {
+                    navigate("/mypage");
+                }} />
+                </IconButton>
+              </div>  
+            </div> */}
+          </div>    
         </div> 
-      
     </div>
   );
 }

@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useEffect} from "react";
 import { useNavigate } from 'react-router-dom'
 import Login from "./routes/Login";
-import Restaurant from "./routes/Restaurant";
 import Signup from "./routes/Signup";
 import Cart from "./routes/Cart";
 import MyPage from "./routes/MyPage";
@@ -123,11 +122,9 @@ function App() {
               } 
             />
             
-            <Route path="/restaurant" element={<Restaurant />} />
             <Route path="/login" element={<Login />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/mynav" element={<MyNav />} />
-            {/* <Route path="/dropcategory" element={<dropCategory />} /> */}
             <Route path="/signup" element={<Signup />} />
             <Route path="community" element={<Community />} />
             <Route path="/mypage" element={<MyPage />} />
