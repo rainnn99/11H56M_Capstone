@@ -1,21 +1,19 @@
-# pip install Flask
-
 from flask import Flask, render_template, url_for, session, request, redirect, jsonify
 import sys
 import mysql.connector
 import recommendation, calender_management, login, logout, sign_up, community_writing, community_list, json
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='../static',static_folder='../static', static_url_path='/')
 app.secret_key = "lfko2dfk5-!fgkfiapvn4"
 
 
 mydb = mysql.connector.connect(
     host="localhost",
-    user="root",
-    password="",        #비밀번호
+    user="test",
+    password="test",        #비밀번호
 )
 mycursor = mydb.cursor()
-mycursor.execute("USE food_recommendation")
+mycursor.execute("USE testdb")
 
 
 
@@ -24,9 +22,9 @@ mycursor.execute("USE food_recommendation")
 @app.route('/')
 def home():
     if 'id' in session:
-        return render_template('home.html', login=1)
+        return render_template('index.html', login=1)
     else:
-        return render_template("home.html", login=0)
+        return render_template("index.html", login=0)
 
 
 # 로그인
@@ -46,10 +44,10 @@ def Logout():
     return render_template('home.html')
 
 # 회원가입
-@app.route('/sign_up', methods=['POST'])
+@app.route('/signup', methods=['POST'])
 def Sign_up():
     sign_up.sign_up()
-    return render_template("home.html")
+    return render_template("index.html")
 
 
 #마이페이지
@@ -88,17 +86,39 @@ def Community_list():
 
 
 # 음식추천
-@app.route('/recommendation/{userid}', methods=['GET'])
+@app.route('/recommendation/<userid>', methods=['GET'])
 def get_recommendation(userid):
     response = []
     response = recommendation.run_recommendation(userid)
 
     return jsonify(response)
 
+
 #캘린더
-@app.route('/calender_management')
-def calender_management():
-    calender_management()
+"""
+@app.route('/calender/<userid>/date/foodname/time', methods=['POST'])
+def get_food_by_userid_date_time(userid):
+    date = request.args.get('date')
+    foodname = request.args.get('foodname')
+    time = request.args.get('time')
+    
+    try:
+    # 실행 로직
+        calender_management.run_calender_insert(date, userid, foodname)
+        return "1"  # 성공 시 1을 반환
+    except:
+        return "0"  # 실패 시 0을 반환
+
+"""
+@app.route('/calender/<userid>/date', methods=['GET'])
+def get_calender_by_userid_date(userid):
+    date = request.args.get('date')
+
+    response = []
+    response = calender_management.run_calender_get(date, userid)
+    
+    return jsonify(response)
 
 
-app.run(port=5000)
+if __name__ == '__main__':
+    app.run(port=5000)

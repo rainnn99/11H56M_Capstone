@@ -5,9 +5,9 @@ import mysql.connector
 
 mydb = mysql.connector.connect(
     host="localhost",
-    user="root",
-    password="",
-    database="food_recommendation"
+    user="test",
+    password="test",
+    database="testdb"
 )
 mycursor = mydb.cursor()
 food_data = pd.read_csv('food.csv')

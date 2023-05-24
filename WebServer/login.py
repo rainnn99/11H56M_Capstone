@@ -4,11 +4,11 @@ import mysql.connector
 
 mydb = mysql.connector.connect(
     host="localhost",
-    user="root",
-    password="",  # 비밀번호
+    user="test",
+    password="test",  # 비밀번호
 )
 mycursor = mydb.cursor()
-mycursor.execute("USE food_recommendation")
+mycursor.execute("USE testdb")
 
 # 로그인
 # 아이디 비밀번호 확인

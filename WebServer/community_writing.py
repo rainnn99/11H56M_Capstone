@@ -4,11 +4,11 @@ import mysql.connector
 
 mydb = mysql.connector.connect(
     host="localhost",
-    user="capstone",
-    password="",
+    user="test",
+    password="test",
 )
 mycursor = mydb.cursor()
-mycursor.execute("USE food_recommendation")
+mycursor.execute("USE testdb")
 
 
 # 커뮤니티_글작성

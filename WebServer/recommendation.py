@@ -5,9 +5,9 @@ import random
 
 mydb = mysql.connector.connect(
     host="localhost",
-    user="root",
-    password="",  # 비밀번호
-    database="food_recommendation"
+    user="test",
+    password="test",  # 비밀번호
+    database="testdb"
 )
 
 mycursor = mydb.cursor()
@@ -108,8 +108,6 @@ def run_recommendation(userid):
     dislike_food = get_dislike_food(userid)
     deficient_nutrients = ['protein_g', 'fat_g', 'carbohydrate_g']
     recommended_foods = recommend_food(taken_food, deficient_nutrients, lack_ratio, food_data, dislike_food)
-    print(dislike_food)
-    print(recommended_foods)
     return recommended_foods
 
 #mycursor.close()
