@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Crimson+Text&family=Gothic+A1&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Jua&family=Libre+Baskerville&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Jua&family=Libre+Baskerville&family=Noto+Sans+KR&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&family=Libre+Baskerville&family=Noto+Sans+KR&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jua&family=Libre+Baskerville&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jua&family=Libre+Baskerville&family=Noto+Sans+KR&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&family=Libre+Baskerville&family=Noto+Sans+KR&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
 * {
   /* font-family: "Crimson Text", serif; */
   text-align: center;
@@ -39,7 +39,7 @@
   color: #f37500;
   /* font-family:'Jua', sans-serif; */
   /* font-family: 'Black Han Sans', sans-serif; */
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: "Do Hyeon", sans-serif;
   font-weight: 700;
   height: 80px;
 }
@@ -77,7 +77,7 @@
   height: 100%;
   /* background-color: #cb58e7; */
   /* background-color: #fc8719; 주황*/
-  background-color: #f78923; 
+  background-color: #f78923;
 }
 .main1 {
   flex-direction: column;
@@ -91,14 +91,13 @@
   bottom: 110px;
   left: 48.5%;
   /* transform: translateX(-50%); */
-  color:white;
+  color: white;
   font-size: 37px;
   font-weight: 100;
-  font-family: 'Nanum Pen Script', cursive;
+  font-family: "Nanum Pen Script", cursive;
   margin-right: 10px;
   margin-top: 200px;
 }
-
 
 .floatingIcon {
   position: fixed;
@@ -106,6 +105,30 @@
   left: 50%;
   transform: translateX(-50%);
   color: white;
+}
+.coupon_text {
+  font-family: "Do Hyeon", sans-serif;
+  font-size: 15px;
+}
+.surveyTitle {
+  font-family: "Do Hyeon", sans-serif;
+  font-size: 30px;
+}
+.surveySubTitle {
+  font-family: "Do Hyeon", sans-serif;
+  font-size: 20px;
+}
+.surveyTitleLogo {
+  color: #f37500;
+}
+.tenper {
+  margin-top: 30px;
+  font-size: 100px;
+  font-family: "Do Hyeon", sans-serif;
+}
+.coupon_txt {
+  font-family: "Do Hyeon", sans-serif;
+  font-size: 20px;
 }
 /* 메인 네브 */
 .mainNav {
@@ -121,7 +144,7 @@
 .mainLogo {
   font-size: 40px;
   color: white;
-  font-family: 'Black Han Sans', sans-serif;
+  font-family: "Black Han Sans", sans-serif;
   margin-top: 30px;
   text-align: left;
 }
@@ -136,7 +159,7 @@
   font-size: 20px;
   font-weight: 700;
   border-radius: 30px;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: "Do Hyeon", sans-serif;
 }
 .emoWrap {
   display: flex;
@@ -195,7 +218,7 @@
 /* 마이 네브 */
 .myNav {
   height: 80px;
-} 
+}
 .navbarWrap {
   display: flex;
   flex-direction: column;
@@ -206,7 +229,6 @@
   flex-direction: row;
   width: 100%;
   height: 80px;
-
 }
 .logsignWrap {
   display: flex;
@@ -219,7 +241,7 @@
 }
 
 .rightMenu {
-  display:flex;
+  display: flex;
   flex-direction: row;
   margin-left: 200px;
   height: 80px;
@@ -230,11 +252,11 @@
   margin-top: 100px;
   font-size: 65px;
   color: #f37500;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: "Do Hyeon", sans-serif;
   font-weight: 500;
 }
 .loginText {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
 }
 .inputSpace {
   display: flex;
@@ -243,18 +265,30 @@
   justify-content: center;
 }
 .logFunc {
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
+.naver_login_btn {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 19px;
+  margin-left: 50px;
+  margin-top: 8px;
+}
+.kakao_login_btn {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 19px;
+  margin-left: 45px;
+  margin-top: 8px;
+}
 /* 회원가입 페이지*/
 #signup_title {
   text-align: center;
-  margin-top: 110px;
-  font-size : "50px";
-  font-family: 'Do Hyeon', sans-serif;
+  margin-top: 20px;
+  font-size: "50px";
+  font-family: "Do Hyeon", sans-serif;
 }
 .signup {
   padding: 0px 0px 0px 0%;
@@ -264,17 +298,30 @@
   /* margin-top: 10px; */
   text-align: center;
 }
-.signup div input { padding: 5px; }
+.signup div input {
+  padding: 5px;
+}
 
-input[name=signup_birth] { width: 80px;}
-input[name=signup_birth2] { width: 20px; margin-left: 5px;}
-input[name=signup_email] { width : 120px }
-select[name=signup_emailselect] { padding: 3px; margin-left: 5px; }
+input[name="signup_birth"] {
+  width: 80px;
+}
+input[name="signup_birth2"] {
+  width: 20px;
+  margin-left: 5px;
+}
+input[name="signup_email"] {
+  width: 120px;
+}
+select[name="signup_emailselect"] {
+  padding: 3px;
+  margin-left: 5px;
+}
 
-input[name=signup_num] {width: 200px;}
+input[name="signup_num"] {
+  width: 200px;
+}
 
-
-input[name=sigunup_btn] { 
+input[name="sigunup_btn"] {
   /* margin : 5% 46% 20% 46%;  */
   margin-top: 60px;
   margin-bottom: 200px;
@@ -283,29 +330,34 @@ input[name=sigunup_btn] {
   height: 58px;
   border-radius: 5px;
   border: none;
-  background-color: #f37500; 
+  background-color: #f37500;
   cursor: pointer;
   color: white;
 }
 
 .line {
   width: 640px;
-  margin-left:auto;
+  margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
   height: 20px;
   color: #000;
 }
+.formSignup {
+  margin: 0 auto;
+}
 .signWrap {
-  margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  justify-content: space-between;
 }
 .signup .pTag {
   font-weight: bold;
-  margin: 0 auto;
   font-size: 18px;
 }
 .signup .inputTag {
-  margin-top: 5px;
   width: 350px;
   height: 43px;
   text-align: left;
@@ -314,10 +366,33 @@ input[name=sigunup_btn] {
   margin-left: 5px;
   margin-right: 20px;
 }
-
+.agreeBoxWrap {
+  margin-top: 20px;
+  width: "350px";
+  height: "200px";
+  background-color: "lightgrey";
+  border-radius: "20px";
+  opacity: "0.5";
+}
+.agreeWrap {
+  width: "450px";
+  height: "300px";
+  background-color: "lightgrey";
+  border-radius: "20px";
+  opacity: "0.5";
+  margin: 0 auto;
+}
+.agreeBox {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  margin-left: 80px;
+  z-index: 1;
+}
 .agreeWrap .agreeUse {
   font-weight: bold;
   font-size: 23px;
+  margin-top: 20px;
 }
 
 .floating-container {
@@ -340,7 +415,6 @@ input[name=sigunup_btn] {
   outline: none;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
-  
 }
 
 .floatingOpen {
@@ -356,10 +430,10 @@ input[name=sigunup_btn] {
 
 .surveyTop .surveyTitle {
   margin-left: 90px;
-} 
+}
 
 .surveyClose {
-  margin-left: 230px;
+  margin-left: 350px;
 }
 
 /* 카테고리 */
@@ -370,7 +444,7 @@ input[name=sigunup_btn] {
 
 .categoryTitle {
   /* color: #f37500; */
-  font-family: 'Black Han Sans', sans-serif;
+  font-family: "Black Han Sans", sans-serif;
   font-size: 55px;
   margin-top: 60px;
   margin-bottom: 70px;
@@ -388,10 +462,9 @@ input[name=sigunup_btn] {
 
 .kacWrap {
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   margin-top: 10px;
   margin-left: 75px;
-  
 }
 .jnsWrap {
   display: flex;
@@ -410,9 +483,8 @@ input[name=sigunup_btn] {
   filter: drop-shadow(10px 6px 6px #c3c3c3);
 }
 
-
 .categoryText {
-  font-family: 'Black Han Sans', sans-serif;
+  font-family: "Black Han Sans", sans-serif;
   font-size: 30px;
   margin-top: 5px;
 }
@@ -470,6 +542,10 @@ input[name=sigunup_btn] {
   display: flex;
   flex-direction: row;
 }
+.mainAi {
+  display: flex;
+  flex-direction: column;
+}
 .pWrap {
   width: 600px;
   display: flex;
@@ -477,8 +553,8 @@ input[name=sigunup_btn] {
   animation: slide 1.5s ease-out;
 }
 @keyframes slide {
-  from{
-    margin-left:-100px;
+  from {
+    margin-left: -100px;
     opacity: 0;
   }
   to {
@@ -497,9 +573,10 @@ input[name=sigunup_btn] {
   color: white;
 }
 .m3icon {
+  /* margin-top: 250px;
+  margin-left: 150px; */
+
   margin-top: 250px;
-  margin-left: 150px;
-  color: white;
 }
 .m4icon {
   margin-top: 250px;
@@ -509,7 +586,7 @@ input[name=sigunup_btn] {
 .s1Title {
   text-align: left;
   /* font-family: 'Black Han Sans', sans-serif; */
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: "Do Hyeon", sans-serif;
   /* font-family: 'Noto Sans KR', sans-serif;
   font-weight: 700; */
   color: white;
@@ -522,12 +599,25 @@ input[name=sigunup_btn] {
   color: white;
   /* margin-left: 10px; */
 }
+.ai_smallTitle {
+  width: 600px;
+  font-size: 18px;
+  color: white;
+  text-align: left;
+}
+.ai_bold {
+  font-weight: 700;
+}
+/* .text_black {
+  text-shadow: 4px 2px 8px black;
+} */
+
 .btn1 {
   width: 230px;
   height: 40px;
   /* margin-left: 10px; */
   margin-top: 25px;
-  background-color:#f78923;
+  background-color: #f78923;
   color: white;
   border-style: solid;
   border-color: white;
@@ -551,7 +641,6 @@ input[name=sigunup_btn] {
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   text-align: left;
-
 }
 
 .post h2 {
@@ -560,7 +649,6 @@ input[name=sigunup_btn] {
   font-size: 24px;
   margin-bottom: 10px;
   text-align: left;
-
 }
 
 .post p {
@@ -569,13 +657,13 @@ input[name=sigunup_btn] {
   text-align: left;
 }
 .pageNumWrap {
-  margin:0 auto
+  margin: 0 auto;
 }
 #page-numbers {
   display: flex;
   list-style: none;
   /* margin: 20px 0 0; */
-  margin:0 auto;
+  margin: 0 auto;
   padding: 0;
 }
 
@@ -633,16 +721,16 @@ input[name=sigunup_btn] {
   height: 40px;
   background-color: #f37500;
   color: white;
-  border:none;
+  border: none;
   border-radius: 10px;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
 }
 .boardLogo {
   /* margin-top: 10px; */
   margin-bottom: 40px;
   font-size: 40px;
-  color:#000;
-  font-family: 'Do Hyeon', sans-serif;
+  color: #000;
+  font-family: "Do Hyeon", sans-serif;
   font-weight: 500;
 }
 .boardCategory {
@@ -652,13 +740,12 @@ input[name=sigunup_btn] {
   margin: 0 auto;
 }
 .board_id {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   font-weight: 500;
 }
 .board_title {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   font-weight: 500;
-
 }
 .board_search {
   position: relative;
@@ -673,7 +760,7 @@ input[name=sigunup_btn] {
   text-align: left;
 }
 .board_search .search_img {
-  position : absolute;
+  position: absolute;
   width: 20px;
   top: 10px;
   right: 12px;
@@ -711,7 +798,7 @@ input[name=sigunup_btn] {
   width: 300px;
   height: 75%;
   max-width: 800px;
-  overflow: auto; 
+  overflow: auto;
   z-index: 1;
   border-radius: 30px;
 }
@@ -734,17 +821,17 @@ input[name=sigunup_btn] {
   cursor: pointer;
 }
 .modalTitle {
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: "Do Hyeon", sans-serif;
   font-weight: 500;
   font-size: 40px;
 }
 .writeTitle {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   font-weight: 500;
   font-size: 16px;
 }
 .writeContent {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   font-weight: 500;
   font-size: 16px;
 }
@@ -761,39 +848,48 @@ input[name=sigunup_btn] {
   margin-top: 30px;
   background-color: #f37500;
   color: white;
-  border:none;
+  border: none;
   border-radius: 10px;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   right: 0;
 }
 
 /* 캘린더 */
 .CalName {
-  font-family: 'Black Han Sans', sans-serif;
+  font-family: "Do Hyeon", sans-serif;
   text-align: center;
-  margin-top:100px;
+  margin-top: 30px;
 }
 .CalName h1 {
-  font-size: 70px;
-  
+  font-size: 60px;
 }
 .year {
-  
+  font-family: "Do Hyeon", sans-serif;
   text-align: center;
   font-size: 35px;
-  color: #f78923
+  color: #424242;
 }
-
+.calendarMenu {
+  font-weight: 700;
+}
+.calendar_kcal {
+  font-weight: 700;
+  color: rgb(16, 66, 133);
+}
+.calenderControll_btn {
+  size: 80;
+  color: rgb(58, 119, 199);
+}
 /* 카테고리별 음식 */
 .FoodImg {
   margin-top: 100px;
-  font-family: 'Black Han Sans', sans-serif;
-  font-size: 50px;
+  font-family: "Do Hyeon", sans-serif;
+  font-size: 40px;
 }
 .FoodName {
-  font-family: 'Black Han Sans', sans-serif;
+  font-family: "Black Han Sans", sans-serif;
   text-align: center;
-  margin-top:100px;
+  margin-top: 100px;
 }
 .FoodName h1 {
   font-size: 80px;

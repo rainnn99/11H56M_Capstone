@@ -21,14 +21,9 @@ function PostList() {
     setShowModal(false);
   };
 
-  // const fetchPosts = async () => {
-  //   const response = await fetch("https://jsonplaceholder.typicode.com/posts");
-  //   const data = await response.json();
-  //   setPosts(data);
-  // };
   const axiosPosts = async () => {
     try {
-      const response = await axios.get("https://jsonplaceholder.typicode.com/posts");
+      const response = await axios.get("/community/lists");
       setPosts(response.data);
     } catch (error) {
       console.error(error);
@@ -55,10 +50,10 @@ function PostList() {
       <div key={post.id} className="post"> 
         <p className="post-meta">
           <span className="post-num">{post.id}</span>
-          <span className="post-title" onClick={() => renderPostDetails(post)}>
+          <span className="post-title" onClick={() => handlePostClick(post)}>
             {post.title}
           </span>
-          {/* <span className="post-author">{`작성자: ${post.userId}`}</span> */}
+          <span className="post-author">{`작성자: ${post.userId}`}</span>
         </p>
       </div>
     );
@@ -70,6 +65,7 @@ function PostList() {
         <div className="post-details">
           <h2>{selectedPost.title}</h2>
           <p>{selectedPost.body}</p>
+          <p>{selectedPost.userId}</p>
         </div>
       );
     }

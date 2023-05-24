@@ -1,4 +1,3 @@
-
 import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -8,7 +7,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useEffect} from "react";
 import { useNavigate } from 'react-router-dom'
 import Login from "./routes/Login";
-import Restaurant from "./routes/Restaurant";
 import Signup from "./routes/Signup";
 import Cart from "./routes/Cart";
 import MyPage from "./routes/MyPage";
@@ -35,7 +33,9 @@ import AsianFood from './routes/FoodCategory/AsianFood';
 import Snack from './routes/FoodCategory/Snack';
 import KoreanFood from './routes/FoodCategory/KoreanFood';
 import MyCalendar from './routes/MyCalendar';
-import MyModal from "./routes/MyModal"
+import MyModal from "./routes/MyModal";
+import Game from "./routes/Game";
+import Survey from "./routes/Survey";
 
 function App() {
   let navigate = useNavigate();
@@ -94,10 +94,6 @@ function App() {
           <Routes>
             <Route path="/" element={
               <>
-              <div>
-            {/* floating icon */}
-            
-          </div>
               <div className="appScreen">
                 <div className="dots">
                 {Array.from({ length: sectionCount }, (_, i) => (
@@ -126,11 +122,9 @@ function App() {
               } 
             />
             
-            <Route path="/restaurant" element={<Restaurant />} />
             <Route path="/login" element={<Login />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/mynav" element={<MyNav />} />
-            {/* <Route path="/dropcategory" element={<dropCategory />} /> */}
             <Route path="/signup" element={<Signup />} />
             <Route path="community" element={<Community />} />
             <Route path="/mypage" element={<MyPage />} />
@@ -152,14 +146,14 @@ function App() {
 
             <Route path="/mycalendar" element={<MyCalendar />} />
             <Route path="/mymodal" element={<MyModal />} />
+            <Route path="/game" element={<Game />} />
+            <Route path="/survey" element={<Survey />} />
+
 
 
 
           </Routes>  
         </div>
-        
-        
-    
       </div>
   
   );
