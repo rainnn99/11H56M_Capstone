@@ -7,8 +7,6 @@ mydb = mysql.connector.connect(
     host="localhost",
     user="test",
     password="test",        #비밀번호
-    user="",
-    password="",  # 비밀번호
 )
 mycursor = mydb.cursor()
 mycursor.execute("USE testdb")

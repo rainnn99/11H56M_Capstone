@@ -110,4 +110,5 @@ def run_recommendation(userid):
     recommended_foods = recommend_food(taken_food, deficient_nutrients, lack_ratio, food_data, dislike_food)
     return recommended_foods
 
+
 #mycursor.close()

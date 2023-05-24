@@ -2,7 +2,21 @@ from flask import Flask, render_template, url_for, session, request, redirect, j
 import sys
 import mysql.connector
 import json
+import logging
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+# 로그 파일 생성
+file_handler = logging.FileHandler('sign_up.log')
+file_handler.setLevel(logging.DEBUG)
+
+# 로그 포맷 설정
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(formatter)
+
+# 로그 핸들러 추가
+logger.addHandler(file_handler)
 mydb = mysql.connector.connect(
     host="localhost",
     user="test",
@@ -17,7 +31,8 @@ def sign_up():
     data = request.json  # JSON 데이터를 받아옴
     # 수행할 작업을 여기에 작성하고, 필요에 따라 data를 활용
     customer = data
-
+    logger.debug('Received sign up request with data: %s', customer)
+    
     try:
         sql = "INSERT INTO customer (id, password, name, phone_number) VALUES (%s, %s, %s, %s)"
         val = (customer['id'], customer['password'],
