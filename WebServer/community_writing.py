@@ -4,21 +4,20 @@ import mysql.connector
 
 mydb = mysql.connector.connect(
     host="localhost",
-    user="capstone",
+    user="",
     password="",
 )
 mycursor = mydb.cursor()
-mycursor.execute("USE food_recommendation")
+mycursor.execute("USE testdb")
 
 
 # 커뮤니티_글작성
 def community_writing():
     userid = session.get("id")
-    title = request.form['title']
-    main_text = request.form['main_text']
+    community = request.json
 
     sql = "INSERT INTO community (customer_id, title, main_text) VALUES (%s, %s, %s)"
-    val = (userid, title, main_text)
+    val = (userid, community["title"], community["main_text"])
 
     mycursor.execute(sql, val)
     mydb.commit()
