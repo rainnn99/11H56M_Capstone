@@ -3,7 +3,7 @@
 from flask import Flask, render_template, url_for, session, request, redirect, jsonify
 import sys
 import mysql.connector
-import recommendation, calender_management, login, logout, sign_up, community_writing, community_list, mypage, json
+import recommendation, calender_management, login, logout, sign_up, community_writing, community_list, json
 
 app = Flask(__name__)
 app.secret_key = "lfko2dfk5-!fgkfiapvn4"
@@ -88,9 +88,12 @@ def Community_list():
 
 
 # 음식추천
-@app.route('/recommendation', methods=['POST'])
-def recommendation():
-    recommendation()
+@app.route('/recommendation/{userid}', methods=['GET'])
+def get_recommendation(userid):
+    response = []
+    response = recommendation.run_recommendation(userid)
+
+    return jsonify(response)
 
 #캘린더
 @app.route('/calender_management')
