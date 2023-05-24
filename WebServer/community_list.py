@@ -1,11 +1,14 @@
 from flask import Flask, render_template, url_for, session, request, redirect
 import sys
-import mysql.connector, json
+import mysql.connector
+import json
 
 mydb = mysql.connector.connect(
     host="localhost",
     user="test",
     password="test",        #비밀번호
+    user="",
+    password="",  # 비밀번호
 )
 mycursor = mydb.cursor()
 mycursor.execute("USE testdb")
@@ -30,7 +33,6 @@ def community_list():
             result.append(data)
         community_list_json = json.dumps(result)
 
-        #print(community_list_json)
     else:
         print("No data found.")
 

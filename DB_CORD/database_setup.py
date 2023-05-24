@@ -35,8 +35,8 @@ mydb = mysql.connector.connect(
 )
 
 mycursor = mydb.cursor()
-mycursor.execute("create database test;")  # 데이터베이스 만들기
-mycursor.execute("USE test")
+mycursor.execute("create database testdb;")  # 데이터베이스 만들기
+mycursor.execute("USE testdb")
 
 # 음식 테이블
 # ------------------------------------------------------
@@ -62,10 +62,9 @@ mycursor.execute("CREATE TABLE customer(\
 id VARCHAR(10) NOT NULL,\
 password VARCHAR(15),\
 name VARCHAR(20),\
-birth DATE,\
-sex CHAR(1),\
 phone_number VARCHAR(20),\
-email VARCHAR(25),\
+coupon VARCHAR(20),\
+login_count INT,\
 CONSTRAINT customer_PK PRIMARY KEY(id)\
 );")
 # ------------------------------------------------------
@@ -81,7 +80,6 @@ CONSTRAINT dislike_food_FK FOREIGN KEY (customer_id) references customer(id),\
 CONSTRAINT dislike_food_FK2 FOREIGN KEY (food_small_scale_classification) references food(food_small_scale_classification)\
 );")
 # ------------------------------------------------------
-
 
 
 # 커뮤니티

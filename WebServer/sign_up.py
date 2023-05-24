@@ -1,6 +1,7 @@
-from flask import Flask, render_template, url_for, session, request, redirect
+from flask import Flask, render_template, url_for, session, request, redirect, jsonify
 import sys
 import mysql.connector
+import json
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -13,17 +14,18 @@ mycursor.execute("USE testdb")
 
 # 회원가입
 def sign_up():
-    id = request.form['id']
-    password = request.form['password']
-    name = request.form['name']
-    birth = request.form['birth']
-    sex = request.form['sex']
-    phone_number = request.form['phone_number']
-    email = request.form['email']
+    data = request.json  # JSON 데이터를 받아옴
+    # 수행할 작업을 여기에 작성하고, 필요에 따라 data를 활용
+    customer = data
 
-    sql = "INSERT INTO customer (id, password, name, birth, sex, phone_number, email) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-    val = (id, password, name, birth, sex, phone_number, email)
-    mycursor.execute(sql, val)
-    mydb.commit()
+    try:
+        sql = "INSERT INTO customer (id, password, name, phone_number) VALUES (%s, %s, %s, %s)"
+        val = (customer['id'], customer['password'],
+               customer['name'], customer['phone_number'])
 
-    return
+        mycursor.execute(sql, val)
+        mydb.commit()
+        return
+    except mysql.connector.errors.IntegrityError:
+        print('에러')
+        return
