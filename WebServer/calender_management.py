@@ -47,7 +47,7 @@ def merge_foodcal(monthfoodinfo, foodcal):
     return merged_result
 
 #데이터의 처리의 편의를 위해 2차원배열->날짜별로 정렬된 3차원배열의 형태로 변환하는 함수
-def convert_to_day(array):
+def sort_to_day(array):
     result = []
     group = None
     for item in array:
@@ -64,7 +64,7 @@ def run_calender_get(input):
     month_data = get_monthfoodinfo(month, userid)
     month_food_info = get_foodcal(month_data)
     first_arr = merge_foodcal(month_data, month_food_info)
-    final_arr = convert_to_day(first_arr)
+    final_arr = sort_to_day(first_arr)
     #print(final_arr)
     return final_arr
 
