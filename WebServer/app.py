@@ -113,9 +113,8 @@ def get_food_by_userid_date_time(userid):
 """
 
 
-@app.route('/calender/<userid>/date', methods=['GET'])
-def get_calender_by_userid_date(userid):
-    date = request.args.get('date')
+@app.route('/calender/<userid>/<date>', methods=['GET'])
+def get_calender_by_userid_date(userid, date):
 
     response = []
     response = calender_management.run_calender_get(date, userid)

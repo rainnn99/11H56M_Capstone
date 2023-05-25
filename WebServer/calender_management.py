@@ -58,10 +58,8 @@ def sort_to_day(array):
     return result
 
 #캘린더에서 정보 가져오기 실행
-def run_calender_get(input):
-    month = input[0]
-    userid = input[1]
-    month_data = get_monthfoodinfo(month, userid)
+def run_calender_get(date, userid):
+    month_data = get_monthfoodinfo(date, userid)
     month_food_info = get_foodcal(month_data)
     first_arr = merge_foodcal(month_data, month_food_info)
     final_arr = sort_to_day(first_arr)
@@ -72,6 +70,6 @@ def run_calender_get(input):
 def run_calender_insert(date, userid, taken_food, time):
     insert_eat_food(date, userid, taken_food, time)
     
-run_calender_get("""api로 데이터 입력받아 오기""")
-mycursor.close()
-mydb.close()
+#run_calender_get("""api로 데이터 입력받아 오기""")
+#mycursor.close()
+#mydb.close()
