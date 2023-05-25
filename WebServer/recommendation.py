@@ -96,6 +96,7 @@ def recommend_food(taken_food, deficient_nutrients, lack_ratio, food_data, disli
     final_recommended_foods = remove_dislike_food(recommended_foods, dislike_food)
     # 다양한 음식을 추천하기 위해 추천 음식 중 랜덤으로 선택
     random.shuffle(final_recommended_foods)
+    final_recommended_foods = list(set(final_recommended_foods))
     final_recommended_foods = final_recommended_foods[:number]
 
     return final_recommended_foods
