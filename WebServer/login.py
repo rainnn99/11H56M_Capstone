@@ -13,12 +13,13 @@ mycursor.execute("USE testdb")
 # 로그인
 # 아이디 비밀번호 확인
 
+
 def login():
     login = request.json
-    sql = "SELECT * FROM customer WHERE id = " + \
-        login['id'] + " AND password = " + login['password']
 
-    mycursor.execute(sql)
+    sql = "SELECT * FROM customer WHERE id = %s AND password = %s"
+    params = (login['id'], login['password'])
+    mycursor.execute(sql, params)
 
     user = mycursor.fetchone()
 
