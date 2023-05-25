@@ -38,11 +38,11 @@ def get_foodcal(input):
 def merge_foodcal(monthfoodinfo, foodcal):
     merged_result = []
     for info in monthfoodinfo:
-        merged_entry = info[:]  # Create a copy of the entry
+        merged_entry = info[:]
         for cal_info in foodcal:
-            if info[1] == cal_info[0]:  # Compare the food names
-                merged_entry.append(cal_info[1])  # Append the calorie information
-                break  # Stop searching after finding a match
+            if info[1] == cal_info[0]:
+                merged_entry.append(cal_info[1])
+                break
         merged_result.append(merged_entry)
     return merged_result
 
