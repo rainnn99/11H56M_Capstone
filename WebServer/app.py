@@ -1,21 +1,27 @@
 from flask import Flask, render_template, url_for, session, request, redirect, jsonify
 import sys
 import mysql.connector
-import recommendation, calender_management, login, logout, sign_up, community_writing, community_list, json
+import recommendation
+import calender_management
+import login
+import logout
+import sign_up
+import community_writing
+import community_list
+import json
 
-app = Flask(__name__, template_folder='../static',static_folder='../static', static_url_path='/')
+app = Flask(__name__, template_folder='../static',
+            static_folder='../static', static_url_path='/')
 app.secret_key = "lfko2dfk5-!fgkfiapvn4"
 
 
 mydb = mysql.connector.connect(
     host="localhost",
     user="test",
-    password="test",        #비밀번호
+    password="test",  # 비밀번호
 )
 mycursor = mydb.cursor()
 mycursor.execute("USE testdb")
-
-
 
 
 #  홈화면
@@ -39,21 +45,25 @@ def login_check():
         return jsonify({'success': False})  # 실패
 
 # 로그아웃
+
+
 @app.route('/logout')
 def Logout():
     logout.logout()
-    return render_template('home.html')
+    return render_template('index.html')
 
 # 회원가입
+
+
 @app.route('/signup', methods=['POST'])
 def Sign_up():
     sign_up.sign_up()
     return render_template("index.html")
 
 
-#마이페이지
-#@app.route('/{userid}/mypage', methods=["POST"])
-#def mypage(userid):
+# 마이페이지
+# @app.route('/{userid}/mypage', methods=["POST"])
+# def mypage(userid):
 #    mypage(userid)
 
 
@@ -63,25 +73,15 @@ def Community_writing():
     userid = session.get("id")
     if userid != None:
         community_writing.community_writing()
-        return render_template("community_lists.html")
+        return
     else:
-        return render_template("home.html")
+        return
 
 
 # 커뮤니티_글목록
 @app.route('/community/lists', methods=['GET'])
 def Community_list():
     community_list_json = community_list.community_list()  # json 보내는 코드
-
-    # 역슬래시 제거
-    community_list_json = community_list_json.replace('\\', '')
-
-    # JSON 데이터 파싱
-    parsed_community_list_json = json.loads(community_list_json)
-
-    # JSON 문자열 생성 (구분자 지정)
-    parsed_community_list_json = json.dumps(
-        parsed_community_list_json, separators=(',', ':'))
 
     return jsonify(community_list_json)
 
@@ -95,7 +95,7 @@ def get_recommendation(userid):
     return jsonify(response)
 
 
-#캘린더
+# 캘린더
 """
 @app.route('/calender/<userid>/date/foodname/time', methods=['POST'])
 def get_food_by_userid_date_time(userid):
@@ -111,13 +111,15 @@ def get_food_by_userid_date_time(userid):
         return "0"  # 실패 시 0을 반환
 
 """
+
+
 @app.route('/calender/<userid>/date', methods=['GET'])
 def get_calender_by_userid_date(userid):
     date = request.args.get('date')
 
     response = []
     response = calender_management.run_calender_get(date, userid)
-    
+
     return jsonify(response)
 
 
