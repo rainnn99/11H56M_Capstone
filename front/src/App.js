@@ -34,7 +34,6 @@ import Snack from './routes/FoodCategory/Snack';
 import KoreanFood from './routes/FoodCategory/KoreanFood';
 import MyCalendar from './routes/MyCalendar';
 import MyModal from "./routes/MyModal";
-import Game from "./routes/Game";
 import Survey from "./routes/Survey";
 
 function App() {
@@ -146,7 +145,6 @@ function App() {
 
             <Route path="/mycalendar" element={<MyCalendar />} />
             <Route path="/mymodal" element={<MyModal />} />
-            <Route path="/game" element={<Game />} />
             <Route path="/survey" element={<Survey />} />
 
 
