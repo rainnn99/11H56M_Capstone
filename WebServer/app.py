@@ -30,12 +30,13 @@ def home():
 # 로그인
 @app.route('/login', methods=["post"])
 def login_check():
+    Login = request.json
     returnvalue = login.login()
     if returnvalue == True:
-        session['id']=request.form['id']
-        return str(1)  # 성공
+        session['id'] = Login['id']
+        return jsonify({'success': True})  # 성공
     else:
-        return str(0)  # 실패
+        return jsonify({'success': False})  # 실패
 
 # 로그아웃
 @app.route('/logout')

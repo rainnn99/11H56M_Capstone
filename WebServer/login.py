@@ -15,7 +15,6 @@ mycursor.execute("USE testdb")
 
 def login():
     login = request.json
-
     sql = "SELECT * FROM customer WHERE id = " + \
         login['id'] + " AND password = " + login['password']
 
