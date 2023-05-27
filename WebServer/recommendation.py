@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import mysql.connector
 import random
+import json
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -64,7 +65,6 @@ def get_nut(matched_rows_modified):
     for index, value in enumerate(lack_ratio):
         if value > 0:
             plethora.append(index)
-            
     lack_ratio = lack_ratio.astype(int)
     return lack_ratio
 
@@ -101,6 +101,22 @@ def recommend_food(taken_food, deficient_nutrients, lack_ratio, food_data, disli
 
     return final_recommended_foods
     
+# api통신을 위한 json화
+def make_json(food, nutr):
+    json_data = {}
+    for i, value in enumerate(food):
+        key = str(i)  # 인덱스를 문자열로 변환하여 사용
+        json_data[key] = value
+    min_index = np.argmin(nutr)
+    if min_index == 0:
+        low_nutrient = "단백질"
+    elif min_index == 1:
+        low_nutrient = "지방"
+    elif min_index == 2:
+        low_nutrient = "탄수화물"
+    json_data["부족영양"] = low_nutrient
+    return json.dumps(json_data, indent=4, ensure_ascii=False)
+
 # 음식 추천 실행
 def run_recommendation(userid):
     taken_food = get_taken_food(userid)
@@ -109,7 +125,9 @@ def run_recommendation(userid):
     dislike_food = get_dislike_food(userid)
     deficient_nutrients = ['protein_g', 'fat_g', 'carbohydrate_g']
     recommended_foods = recommend_food(taken_food, deficient_nutrients, lack_ratio, food_data, dislike_food)
-    return recommended_foods
+    return_json = make_json(recommended_foods, lack_ratio)
+    print(return_json)
+    return return_json
 
 
 #mycursor.close()

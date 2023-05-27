@@ -1,6 +1,7 @@
 #캘린더
 import pandas as pd
 import mysql.connector
+import json
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -46,6 +47,7 @@ def merge_foodcal(monthfoodinfo, foodcal):
         merged_result.append(merged_entry)
     return merged_result
 
+"""
 #데이터의 처리의 편의를 위해 2차원배열->날짜별로 정렬된 3차원배열의 형태로 변환하는 함수
 def sort_to_day(array):
     result = []
@@ -56,20 +58,30 @@ def sort_to_day(array):
             result.append(group)
         group.append(item[1:])
     return result
+"""
+
+#api 통신을 위한 json화
+def make_json(input):
+    json_data = []
+    for row in input:
+        json_row = {
+            "날짜": row[0],
+            "음식이름": row[1],
+            "시간": row[2],
+            "칼로리": row[3]
+        }
+        json_data.append(json_row)
+    return json.dumps(json_data, indent=4, ensure_ascii=False)
 
 #캘린더에서 정보 가져오기 실행
 def run_calender_get(date, userid):
     month_data = get_monthfoodinfo(date, userid)
     month_food_info = get_foodcal(month_data)
-    first_arr = merge_foodcal(month_data, month_food_info)
-    final_arr = sort_to_day(first_arr)
-    #print(final_arr)
-    return final_arr
+    return_arr = merge_foodcal(month_data, month_food_info)
+    return_json = make_json(return_arr)
+    print(return_json)
+    return return_json
 
 #캘린더에 데이터 삽입 실행
 def run_calender_insert(date, userid, taken_food, time):
     insert_eat_food(date, userid, taken_food, time)
-    
-#run_calender_get("""api로 데이터 입력받아 오기""")
-#mycursor.close()
-#mydb.close()
