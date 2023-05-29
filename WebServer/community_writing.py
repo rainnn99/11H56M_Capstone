@@ -17,9 +17,9 @@ def community_writing():
     community = request.json
 
     sql = "INSERT INTO community (customer_id, title, main_text) VALUES (%s, %s, %s)"
-    val = (userid, community["title"], community["main_text"])
+    val = (userid, community["title"], community["content"])
 
     mycursor.execute(sql, val)
     mydb.commit()
 
-    return
+    return True
