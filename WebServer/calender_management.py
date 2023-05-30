@@ -2,6 +2,8 @@
 import pandas as pd
 import mysql.connector
 import json
+import datetime
+from flask import session, request
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -10,7 +12,7 @@ mydb = mysql.connector.connect(
     database="testdb"
 )
 mycursor = mydb.cursor()
-food_data = pd.read_csv('food.csv')
+food_data = pd.read_csv('../food.csv')
 
 def insert_eat_food(date, userid, food_name, time):
     query = "INSERT INTO calender (user_id, day, taken_food, time) VALUES (%s, %s, %s, %s)"
@@ -20,11 +22,14 @@ def insert_eat_food(date, userid, food_name, time):
 
 #DB의 calander에서 고객이 먹은 월간식사 데이터 받아와 날짜별로 정렬후 return
 def get_monthfoodinfo(date, userid):
-    yearmonth = int(date)
-    query_calendar = f"SELECT day, taken_food, time FROM calender WHERE user_id = '{userid}' AND SUBSTRING(CAST(day AS CHAR), 1, 6) = '{yearmonth}'"
+    date = str(date)
+    year = int(date[:4])
+    month = int(date[4:])
+    year_month = f"{year}-{month:02d}"
+    query_calendar = f"SELECT day, taken_food, time FROM calender WHERE user_id = '{userid}' AND DATE_FORMAT(day, '%Y-%m') = '{year_month}'"
     mycursor.execute(query_calendar)
     rows_calendar = mycursor.fetchall()
-    rows_calendar = [list(i) for i in rows_calendar]
+    rows_calendar = [[item[0].strftime('%Y-%m-%d'), item[1], item[2]] for item in rows_calendar]
     sorted_array = sorted(rows_calendar, key=lambda x: x[0])
     return sorted_array
 
@@ -68,13 +73,13 @@ def make_json(input):
             "날짜": row[0],
             "음식이름": row[1],
             "시간": row[2],
-            "칼로리": row[3]
+            "칼로리": row[3]            
         }
         json_data.append(json_row)
     return json.dumps(json_data, indent=4, ensure_ascii=False)
 
 #캘린더에서 정보 가져오기 실행
-def run_calender_get(date, userid):
+def run_calender_get(userid, date):
     month_data = get_monthfoodinfo(date, userid)
     month_food_info = get_foodcal(month_data)
     return_arr = merge_foodcal(month_data, month_food_info)
@@ -83,5 +88,20 @@ def run_calender_get(date, userid):
     return return_json
 
 #캘린더에 데이터 삽입 실행
-def run_calender_insert(date, userid, taken_food, time):
-    insert_eat_food(date, userid, taken_food, time)
+def run_calender_insert(userid):
+    data = request.json
+    date = data['날짜']
+    breakfast = data['음식이름1']
+    lunch = data['음식이름2']
+    dinner = data['음식이름3']
+    success = True
+    
+    try:
+        insert_eat_food(date, userid, breakfast, 1)
+        insert_eat_food(date, userid, lunch, 2)
+        insert_eat_food(date, userid, dinner, 3)
+    except Exception as e:
+        print("Query execution failed:", str(e))
+        success = False
+    print(success)
+    return success

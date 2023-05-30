@@ -1,11 +1,16 @@
 import { Calendar, Button } from 'antd';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import MyModal from './MyModal';
+import axios from 'axios';
 
 function MyCalendar() {
   const [visible, setVisible] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const [data, setData] = useState({});
+  const [year, setYear] = useState('');
+  const [month, setMonth] = useState('');
+  let navigate = useNavigate();
 
   const handleCancel = () => {
     setVisible(false);
@@ -19,29 +24,105 @@ function MyCalendar() {
   const dateCellRender = (value) => {
     const dateString = value.format('YYYY-MM-DD');
     const dayData = data[dateString];
-
+  
+    const handleEdit = () => {
+      setSelectedDate(value);
+      setVisible(true);
+    };
+    
+    
     return (
       <div>
-        {dayData && (
+        {dayData ? (
           <div>
-            <p style={{marginBottom:"0px"}}>아침: {dayData.breakfast}</p>
-            <p style={{marginBottom:"0px"}}>점심: {dayData.lunch}</p>
-            <p style={{marginBottom:"0px"}}>저녁: {dayData.dinner}</p>
-            <p style={{marginBottom:"0px"}}>Kcal: </p>
+            <p style={{ marginBottom: "0px", textAlign: "left" }}>아침: {dayData.breakfast}</p>
+            <p style={{ marginBottom: "0px", textAlign: "left" }}>점심: {dayData.lunch}</p>
+            <p style={{ marginBottom: "0px", textAlign: "left" }}>저녁: {dayData.dinner}</p>
+            <p style={{ marginBottom: "0px", textAlign: "left" }}>Kcal: </p>
+           
+            <Button type="dashed" onClick={handleEdit} style={{ marginTop: 10, textAlign: "right" }}>수정</Button>
           </div>
+        ) : (
+          <Button type="dashed" onClick={() => handleSelect(value)} style={{ marginTop: 10, textAlign: "right" }}>추가</Button>
         )}
-        <Button type="dashed" onClick={() => handleSelect(value)}>추가</Button>
       </div>
     );
   };
+  
 
   const saveData = (date, newData) => {
     const dateString = date.format('YYYY-MM-DD');
+  
+    const requestBody = {
+      날짜: dateString,
+      음식이름1: newData.breakfast,
+      음식이름2: newData.lunch,
+      음식이름3: newData.dinner,
+    };
+  
+    axios.post('/calender', requestBody)
+      .then(response => {
+        const return_code = response.data;
+        console.log(return_code)
+        if (return_code.success) {
+          console.log(return_code.success)
+          navigate("/mycalendar"); //홈화면으로
+        } else {
+          alert("사용자의 데이터를 입력하는데 실패했습니다");
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("사용자의 데이터를 입력하는데에 실패했습니다. 나중에 다시 시도해주세요.");
+      });
+  
     setData(prevData => ({
       ...prevData,
       [dateString]: newData,
     }));
   };
+
+  const fetchData = (year, month) => {
+    const monthString = month.replace('월', '').padStart(2, '0');
+    const yearMonthString = `${year}${monthString}`;
+
+    axios.get(`/calender/${yearMonthString}`)
+      .then(response => {
+        const receivedData = response.data;
+        console.log(receivedData)
+        const modifiedData = transformData(receivedData); // 데이터 형식 변환 함수 호출
+        setData(modifiedData);
+      })
+      .catch(error => {
+        // 오류 처리
+      });
+  };
+  
+  const transformData = (data) => {
+    const modifiedData = {};
+  
+    // 데이터 형식 변환
+    data.forEach(item => {
+      const { date, foodName, time, calorie } = item;
+  
+      if (!modifiedData[date]) {
+        modifiedData[date] = [];
+      }
+  
+      modifiedData[date].push({
+        음식이름: foodName,
+        시간: time === 1 ? '아침' : time === 2 ? '점심' : '저녁',
+        칼로리: calorie,
+      });
+    });
+  
+    return modifiedData;
+  };
+  
+  
+  useEffect(() => {
+    fetchData(year, month);
+  }, [year, month]);
   
   return (
     <div>
@@ -53,8 +134,10 @@ function MyCalendar() {
           style={{ maxWidth: '1100px', margin: '0 auto', border: 'none' }}
           dateCellRender={dateCellRender}
           headerRender={({ value, type, onChange }) => {
-            const year = value.format('YYYY');
-            const month = value.format('M월');
+            const currentYear = value.format('YYYY');
+            const currentMonth = value.format('M월');
+            setYear(currentYear);
+            setMonth(currentMonth);
 
             return (
               <div style={{ padding: 10, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -83,4 +166,4 @@ function MyCalendar() {
   );
 }
 
-export default MyCalendar;
+export default MyCalendar;  

@@ -96,21 +96,21 @@ def get_recommendation(userid):
 
 
 # 캘린더
-"""
-@app.route('/calender/<userid>/date/foodname/time', methods=['POST'])
-def get_food_by_userid_date_time(userid):
-    date = request.args.get('date')
-    foodname = request.args.get('foodname')
-    time = request.args.get('time')
-    
+@app.route('/calender', methods=['POST'])
+def get_food_by_userid_date_time():
+    userid = session.get("id")
     try:
     # 실행 로직
-        calender_management.run_calender_insert(date, userid, foodname)
-        return "1"  # 성공 시 1을 반환
+        calender_management.run_calender_insert(userid)
+        return jsonify({'success': True})
     except:
-        return "0"  # 실패 시 0을 반환
+        return jsonify({'success': False})
 
-"""
+@app.route('/calender/<date>', methods=['GET'])
+def get_calender_by_userid_date(date):
+    userid = session.get("id")
+    response = calender_management.run_calender_get(userid, date)
+    return response
 
 
 @app.route('/calender/<userid>/<date>', methods=['GET'])
