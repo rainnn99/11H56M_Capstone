@@ -73,18 +73,18 @@ def Community_writing():
     userid = session.get("id")
     if userid != None:
         community_writing.community_writing()
-        return
+        
+        return "True"
     else:
-        return
+        return "False"
 
 
 # 커뮤니티_글목록
-@app.route('/community/lists', methods=['GET'])
+@app.route("/community/lists", methods=['GET'])
 def Community_list():
     community_list_json = community_list.community_list()  # json 보내는 코드
 
     return jsonify(community_list_json)
-
 
 # 음식추천
 @app.route('/recommendation/<userid>', methods=['GET'])

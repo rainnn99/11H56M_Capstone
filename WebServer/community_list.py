@@ -24,14 +24,14 @@ def community_list():
     if len(row) > 0:
         for i in range(len(row)):
             data = {
-                'serial_number': row[i][0],
-                'id': row[i][1],
+                'id': row[i][0],
+                'userId': row[i][1],
                 'title': row[i][2]
             }
             result.append(data)
-        community_list_json = json.dumps(result)
+        #community_list_json = json.dumps(result)
 
     else:
         print("No data found.")
 
-    return community_list_json
+    return result
