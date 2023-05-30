@@ -24,20 +24,41 @@ function MyCalendar() {
   const dateCellRender = (value) => {
     const dateString = value.format('YYYY-MM-DD');
     const dayData = data[dateString];
+    console.log(dayData)
   
     const handleEdit = () => {
       setSelectedDate(value);
       setVisible(true);
+    };
+    const getMealName = (time) => {
+      switch (time) {
+        case 1:
+          return '아침';
+        case 2:
+          return '점심';
+        case 3:
+          return '저녁';
+        default:
+          return '';
+      }
     };
     
     return (
       <div>
         {dayData ? (
           <div>
-            <p style={{ marginBottom: "0px", textAlign: "left" }}>아침: {dayData.breakfast}</p>
-            <p style={{ marginBottom: "0px", textAlign: "left" }}>점심: {dayData.lunch}</p>
-            <p style={{ marginBottom: "0px", textAlign: "left" }}>저녁: {dayData.dinner}</p>
-            <p style={{ marginBottom: "0px", textAlign: "left" }}>Kcal: </p>
+            <p style={{ marginBottom: "0px", textAlign: "left" }}>
+            {getMealName(1)}: {dayData.find(item => item.시간 === 1)?.음식이름}
+          </p>
+          <p style={{ marginBottom: "0px", textAlign: "left" }}>
+            {getMealName(2)}: {dayData.find(item => item.시간 === 2)?.음식이름}
+          </p>
+          <p style={{ marginBottom: "0px", textAlign: "left" }}>
+            {getMealName(3)}: {dayData.find(item => item.시간 === 3)?.음식이름}
+          </p>
+          <p style={{ marginBottom: "0px", textAlign: "left" }}>
+            Kcal: {dayData.reduce((sum, item) => sum + item.칼로리, 0)}
+          </p>
            
             <Button type="dashed" onClick={handleEdit} style={{ marginTop: 10, textAlign: "right" }}>수정</Button>
           </div>
@@ -61,9 +82,8 @@ function MyCalendar() {
     axios.post('/calender', requestBody)
       .then(response => {
         const return_code = response.data;
-        console.log(return_code)
         if (return_code.success) {
-          console.log(return_code.success)
+          fetchData(year, month);
           navigate("/mycalendar"); //홈화면으로
         } else {
           alert("사용자의 데이터를 입력하는데 실패했습니다");
@@ -74,66 +94,41 @@ function MyCalendar() {
         alert("사용자의 데이터를 입력하는데에 실패했습니다. 나중에 다시 시도해주세요.");
       });
   
-    setData(prevData => ({
-      ...prevData,
-      [dateString]: newData,
-    }));
+    // setData(prevData => ({
+    //   ...prevData,
+    //   [dateString]: newData,
+    // }));
   };
 
   const fetchData = (year, month) => {
     const monthString = month.replace('월', '').padStart(2, '0');
     const yearMonthString = `${year}${monthString}`;
 
-    axios.get(`/calender/${yearMonthString}`)
-      .then(response => {
+    axios
+      .get(`/calender/${yearMonthString}`)
+      .then((response) => {
         const receivedData = response.data;
-        console.log(receivedData)
-        const modifiedData = transformData(receivedData); // 데이터 형식 변환 함수 호출
-        setData(modifiedData);
+        const transformedData = {};
+
+        receivedData.forEach((item) => {
+          const { 날짜, ...rest } = item;
+          if (!transformedData[날짜]) {
+            transformedData[날짜] = [];
+          }
+          transformedData[날짜].push(rest);
+        });
+
+      // 기존 데이터에 새로운 데이터를 병합하여 업데이트
+        setData((prevData) => ({
+          ...prevData,
+          ...transformedData,
+        }));
       })
       .catch(error => {
         // 오류 처리
       });
   };
-  
-  const transformData = (data) => {
-    const modifiedData = {};
 
-    data.forEach(item => {
-      const { 날짜, 음식이름1, 음식이름2, 음식이름3 } = item;
-  
-      if (!modifiedData[날짜]) {
-        modifiedData[날짜] = [];
-      }
-  
-      if (음식이름1) {
-        modifiedData[날짜].push({
-          음식이름: 음식이름1,
-          시간: '아침',
-          칼로리: '',
-        });
-      }
-  
-      if (음식이름2) {
-        modifiedData[날짜].push({
-          음식이름: 음식이름2,
-          시간: '점심',
-          칼로리: '',
-        });
-      }
-  
-      if (음식이름3) {
-        modifiedData[날짜].push({
-          음식이름: 음식이름3,
-          시간: '저녁',
-          칼로리: '',
-        });
-      }
-    });
-    setData(modifiedData);
-    return modifiedData;
-  };
-  
   useEffect(() => {
     // 초기 렌더링 이후에만 실행되도록 조건문 추가
     if (year !== '' && month !== '') {
