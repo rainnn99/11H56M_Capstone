@@ -30,7 +30,6 @@ function MyCalendar() {
       setVisible(true);
     };
     
-    
     return (
       <div>
         {dayData ? (
@@ -49,7 +48,6 @@ function MyCalendar() {
     );
   };
   
-
   const saveData = (date, newData) => {
     const dateString = date.format('YYYY-MM-DD');
   
@@ -100,30 +98,58 @@ function MyCalendar() {
   
   const transformData = (data) => {
     const modifiedData = {};
-  
-    // 데이터 형식 변환
+
     data.forEach(item => {
-      const { date, foodName, time, calorie } = item;
+      const { 날짜, 음식이름1, 음식이름2, 음식이름3 } = item;
   
-      if (!modifiedData[date]) {
-        modifiedData[date] = [];
+      if (!modifiedData[날짜]) {
+        modifiedData[날짜] = [];
       }
   
-      modifiedData[date].push({
-        음식이름: foodName,
-        시간: time === 1 ? '아침' : time === 2 ? '점심' : '저녁',
-        칼로리: calorie,
-      });
-    });
+      if (음식이름1) {
+        modifiedData[날짜].push({
+          음식이름: 음식이름1,
+          시간: '아침',
+          칼로리: '',
+        });
+      }
   
+      if (음식이름2) {
+        modifiedData[날짜].push({
+          음식이름: 음식이름2,
+          시간: '점심',
+          칼로리: '',
+        });
+      }
+  
+      if (음식이름3) {
+        modifiedData[날짜].push({
+          음식이름: 음식이름3,
+          시간: '저녁',
+          칼로리: '',
+        });
+      }
+    });
+    setData(modifiedData);
     return modifiedData;
   };
   
-  
   useEffect(() => {
-    fetchData(year, month);
+    // 초기 렌더링 이후에만 실행되도록 조건문 추가
+    if (year !== '' && month !== '') {
+      fetchData(year, month);
+    }
   }, [year, month]);
-  
+
+  useEffect(() => {
+    // 컴포넌트가 마운트될 때 현재 날짜로 year와 month 설정
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear().toString();
+    const currentMonth = (currentDate.getMonth() + 1).toString();
+    setYear(currentYear);
+    setMonth(currentMonth);
+  }, []);
+
   return (
     <div>
       <div className="CalName">
@@ -166,4 +192,4 @@ function MyCalendar() {
   );
 }
 
-export default MyCalendar;  
+export default MyCalendar;

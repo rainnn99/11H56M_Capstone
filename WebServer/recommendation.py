@@ -66,6 +66,7 @@ def get_nut(matched_rows_modified):
         if value > 0:
             plethora.append(index)
     lack_ratio = lack_ratio.astype(int)
+    print(plethora)
     return lack_ratio
 
 def remove_dislike_food(recommand, dislike):
@@ -107,12 +108,12 @@ def make_json(food, nutr):
     for i, value in enumerate(food):
         key = str(i)  # 인덱스를 문자열로 변환하여 사용
         json_data[key] = value
-    min_index = np.argmin(nutr)
-    if min_index == 0:
+    max_index = np.argmax(nutr)
+    if max_index == 0:
         low_nutrient = "단백질"
-    elif min_index == 1:
+    elif max_index == 1:
         low_nutrient = "지방"
-    elif min_index == 2:
+    elif max_index == 2:
         low_nutrient = "탄수화물"
     json_data["부족영양"] = low_nutrient
     return json.dumps(json_data, indent=4, ensure_ascii=False)

@@ -22,9 +22,8 @@ def insert_eat_food(date, userid, food_name, time):
 
 #DB의 calander에서 고객이 먹은 월간식사 데이터 받아와 날짜별로 정렬후 return
 def get_monthfoodinfo(date, userid):
-    date = str(date)
     year = int(date[:4])
-    month = int(date[4:])
+    month = int(date[5:])
     year_month = f"{year}-{month:02d}"
     query_calendar = f"SELECT day, taken_food, time FROM calender WHERE user_id = '{userid}' AND DATE_FORMAT(day, '%Y-%m') = '{year_month}'"
     mycursor.execute(query_calendar)
@@ -69,13 +68,22 @@ def sort_to_day(array):
 def make_json(input):
     json_data = []
     for row in input:
-        json_row = {
-            "날짜": row[0],
-            "음식이름": row[1],
-            "시간": row[2],
-            "칼로리": row[3]            
-        }
-        json_data.append(json_row)
+        if len(row) >= 3:
+            if len(row) == 3:
+                json_row = {
+                    "날짜": row[0],
+                    "음식이름": row[1],
+                    "시간": row[2],
+                    "칼로리": 0            
+                }
+            else:
+                json_row = {
+                    "날짜": row[0],
+                    "음식이름": row[1],
+                    "시간": row[2],
+                    "칼로리": row[3]            
+                }
+            json_data.append(json_row)
     return json.dumps(json_data, indent=4, ensure_ascii=False)
 
 #캘린더에서 정보 가져오기 실행
@@ -84,7 +92,6 @@ def run_calender_get(userid, date):
     month_food_info = get_foodcal(month_data)
     return_arr = merge_foodcal(month_data, month_food_info)
     return_json = make_json(return_arr)
-    print(return_json)
     return return_json
 
 #캘린더에 데이터 삽입 실행
@@ -103,5 +110,4 @@ def run_calender_insert(userid):
     except Exception as e:
         print("Query execution failed:", str(e))
         success = False
-    print(success)
     return success
