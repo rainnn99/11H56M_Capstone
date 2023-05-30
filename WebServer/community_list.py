@@ -15,6 +15,8 @@ mycursor.execute("USE testdb")
 # 커뮤니티_글목록
 def community_list():
 
+    mydb.commit()
+
     sql = "SELECT * FROM community"
 
     mycursor.execute(sql)

@@ -5,6 +5,10 @@ import PostModal from "./PostModal";
 import MyNav from "../MyNav";
 import axios from "axios";
 
+export function axiosPosts() {
+  return axios.get("/community/lists");
+}
+
 function PostList() {
   let navigate = useNavigate();
 
@@ -15,10 +19,14 @@ function PostList() {
 
   const handleShowModal = () => {
     setShowModal(true);
+    
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
+    axiosPosts().then((response) => {
+      setPosts(response.data);
+    }); // 모달이 닫힐 때마다 데이터를 다시 불러옴
   };
 
   const axiosPosts = async () => {
@@ -115,7 +123,7 @@ function PostList() {
           <ul id="page-numbers">{renderPageNumbers}</ul>
         </div>
         <button className="writeBtn" onClick={handleShowModal}>글 작성</button>
-        <PostModal show={showModal} handleClose={handleCloseModal}>
+        <PostModal show={showModal} handleClose={handleCloseModal} navigate={navigate}>
           <form>
             <label>
               제목:

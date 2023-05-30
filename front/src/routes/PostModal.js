@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import "./../Modal.css";
 import axios from "axios";
+import { navigate } from "react-router-dom";
+import { axiosPosts } from "./PostList";
 
 function PostModal(props) {
-  const { handleClose, show } = props;
+  const { handleClose, show, navigate } = props;
+  //const { handleClose, show } = props;
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -33,6 +36,8 @@ function PostModal(props) {
         setTitle("");
         setContent("");
         handleClose(); // 모달 닫기
+
+        navigate("/postlist"); // PostList 컴포넌트로 돌아가기
       })
       .catch((error) => {
         console.error("Error:", error);
