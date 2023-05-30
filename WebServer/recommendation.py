@@ -129,6 +129,6 @@ def run_recommendation(userid):
     print(return_json)
     return return_json
 
-run_recommendation('aaa')
+#run_recommendation('aaa')
 
 #mycursor.close()
