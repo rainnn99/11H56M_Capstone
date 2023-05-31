@@ -5,7 +5,7 @@ import PostModal from "./PostModal";
 import MyNav from "../MyNav";
 import axios from "axios";
 
-export function axiosPosts() {
+export function fetchPosts() {
   return axios.get("/community/lists");
 }
 
@@ -19,17 +19,16 @@ function PostList() {
 
   const handleShowModal = () => {
     setShowModal(true);
-    
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
-    axiosPosts().then((response) => {
+    fetchPosts().then((response) => {
       setPosts(response.data);
     }); // 모달이 닫힐 때마다 데이터를 다시 불러옴
   };
 
-  const axiosPosts = async () => {
+  const fetchPosts = async () => {
     try {
       const response = await axios.get("/community/lists");
       setPosts(response.data);
@@ -39,7 +38,7 @@ function PostList() {
   };
 
   useEffect(() => {
-    axiosPosts();
+    fetchPosts();
   }, []);
 
   const indexOfLastPost = currentPage * 15;
@@ -50,14 +49,12 @@ function PostList() {
     setSelectedPost(post);
   };
 
-  
-
-  const renderPosts = currentPosts.map((post) => { //게시글 보여주는 부분
+  const renderPosts = currentPosts.map((post, index) => {
+    const postNumber = indexOfFirstPost + index + 1;
     return (
-      // .id, .title같은 부분을 백엔드 변수로 바꿔주면 됨
-      <div key={post.id} className="post"> 
+      <div key={post.id} className="post">
         <p className="post-meta">
-          <span className="post-num">{post.id}</span>
+          <span className="post-num">{postNumber}</span>
           <span className="post-title" onClick={() => handlePostClick(post)}>
             {post.title}
           </span>
@@ -79,9 +76,7 @@ function PostList() {
     }
   };
 
-  //1234567 처럼 글 개수대로 페이지 숫자 저장
-  
-  const pageNumbers = []
+  const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(posts.length / 15); i++) {
     pageNumbers.push(i);
   }
@@ -90,7 +85,7 @@ function PostList() {
     return (
       <li
         key={number}
-        onClick={() => setCurrentPage(number)} // 페이지 번호 누르면 (페이지번호에 있는)현재페이지로
+        onClick={() => setCurrentPage(number)}
         className={currentPage === number ? "active" : ""}
       >
         {number}
