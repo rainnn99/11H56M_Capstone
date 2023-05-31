@@ -84,7 +84,6 @@ function MyCalendar() {
         const return_code = response.data;
         if (return_code.success) {
           fetchData(year, month);
-          navigate("/mycalendar"); //홈화면으로
         } else {
           alert("사용자의 데이터를 입력하는데 실패했습니다");
         }
@@ -93,11 +92,7 @@ function MyCalendar() {
         console.error("Error:", error);
         alert("사용자의 데이터를 입력하는데에 실패했습니다. 나중에 다시 시도해주세요.");
       });
-  
-    // setData(prevData => ({
-    //   ...prevData,
-    //   [dateString]: newData,
-    // }));
+
   };
 
   const fetchData = (year, month) => {

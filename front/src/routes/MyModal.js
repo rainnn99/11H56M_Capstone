@@ -14,6 +14,7 @@ function MyModal({ visible, onCancel, onSave, date, data }) {
   const handleSave = () => {
     onSave(newData);
     setNewData({});
+    onCancel();
   };
 
   return (
@@ -73,7 +74,9 @@ function MyModal({ visible, onCancel, onSave, date, data }) {
         </div>
       }
     >
-      <Button onClick={handleSave}>저장</Button>
+      <Button onClick={handleSave} style={{ marginLeft: 10 }}>
+          저장
+        </Button>
     </Modal>
   );
 }

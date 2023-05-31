@@ -45,27 +45,16 @@ def login_check():
         return jsonify({'success': False})  # 실패
 
 # 로그아웃
-
-
 @app.route('/logout')
 def Logout():
     logout.logout()
     return render_template('index.html')
 
 # 회원가입
-
-
 @app.route('/signup', methods=['POST'])
 def Sign_up():
     sign_up.sign_up()
     return render_template("index.html")
-
-
-# 마이페이지
-# @app.route('/{userid}/mypage', methods=["POST"])
-# def mypage(userid):
-#    mypage(userid)
-
 
 # 커뮤니티_글작성
 @app.route('/community/{userid}/new-writing', methods=['POST'])
@@ -73,17 +62,14 @@ def Community_writing():
     userid = session.get("id")
     if userid != None:
         community_writing.community_writing()
-        
         return "True"
     else:
         return "False"
-
 
 # 커뮤니티_글목록
 @app.route("/community/lists", methods=['GET'])
 def Community_list():
     community_list_json = community_list.community_list()  # json 보내는 코드
-
     return jsonify(community_list_json)
 
 # 음식추천
@@ -91,7 +77,6 @@ def Community_list():
 def get_recommendation(userid):
     response = []
     response = recommendation.run_recommendation(userid)
-
     return jsonify(response)
 
 
@@ -111,16 +96,6 @@ def get_calender_by_userid_date(date):
     userid = session.get("id")
     response = calender_management.run_calender_get(userid, date)
     return response
-
-
-@app.route('/calender/<userid>/<date>', methods=['GET'])
-def get_calender_by_userid_date(userid, date):
-
-    response = []
-    response = calender_management.run_calender_get(date, userid)
-
-    return jsonify(response)
-
 
 if __name__ == '__main__':
     app.run(port=5000)

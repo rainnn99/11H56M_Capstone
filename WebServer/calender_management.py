@@ -92,27 +92,39 @@ def run_calender_get(userid, date):
 def run_calender_insert(userid):
     data = request.json
     date = data['날짜']
-    breakfast = data['음식이름1']
-    lunch = data['음식이름2']
-    dinner = data['음식이름3']
     success = True
     
-    try:
-        if not is_eat_food_exist(date, userid, 1):
-            insert_eat_food(date, userid, breakfast, 1)
-        else:
-            update_eat_food(date, userid, breakfast, 1)
-            
-        if not is_eat_food_exist(date, userid, 2):
-            insert_eat_food(date, userid, lunch, 2)
-        else:
-            update_eat_food(date, userid, lunch, 2)
-            
-        if not is_eat_food_exist(date, userid, 3):
-            insert_eat_food(date, userid, dinner, 3)
-        else:
-            update_eat_food(date, userid, dinner, 3)
-    except Exception as e:
-        print("Query execution failed:", str(e))
-        success = False
+    if '음식이름1' in data:
+        breakfast = data['음식이름1']
+        try:
+            if not is_eat_food_exist(date, userid, 1):
+                insert_eat_food(date, userid, breakfast, 1)
+            else:
+                update_eat_food(date, userid, breakfast, 1)
+        except Exception as e:
+            print("Query execution failed:", str(e))
+            success = False
+    
+    if '음식이름2' in data:
+        lunch = data['음식이름2']
+        try:
+            if not is_eat_food_exist(date, userid, 2):
+                insert_eat_food(date, userid, lunch, 2)
+            else:
+                update_eat_food(date, userid, lunch, 2)
+        except Exception as e:
+            print("Query execution failed:", str(e))
+            success = False
+    
+    if '음식이름3' in data:
+        dinner = data['음식이름3']
+        try:
+            if not is_eat_food_exist(date, userid, 3):
+                insert_eat_food(date, userid, dinner, 3)
+            else:
+                update_eat_food(date, userid, dinner, 3)
+        except Exception as e:
+            print("Query execution failed:", str(e))
+            success = False
+    
     return success
