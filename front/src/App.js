@@ -35,6 +35,8 @@ import KoreanFood from './routes/FoodCategory/KoreanFood';
 import MyCalendar from './routes/MyCalendar';
 import MyModal from "./routes/MyModal";
 import Survey from "./routes/Survey";
+import RecommendFood from "./routes/RecommendFood";
+import Map from "./Map"
 
 function App() {
   let navigate = useNavigate();
@@ -104,13 +106,13 @@ function App() {
                 ))}  
                 </div>
                 <section id="section1" style={sectionStyle} onClick={() => handleSectionClick(0)}>
-                  <Main1 />
+                  <Main3 />
                 </section>
                 <section id="section2" style={sectionStyle} onClick={() => handleSectionClick(1)}>
-                <Main2 />
+                <Main1 />
                 </section>
                 <section id="section3" style={sectionStyle} onClick={() => handleSectionClick(2)}>
-                <Main3 />
+                <Main2 />
                 </section>
                 <section id="section4" style={sectionStyle} onClick={() => handleSectionClick(3)}>
                   <Main4 />
@@ -146,6 +148,8 @@ function App() {
             <Route path="/mycalendar" element={<MyCalendar />} />
             <Route path="/mymodal" element={<MyModal />} />
             <Route path="/survey" element={<Survey />} />
+            <Route path="/recommendfood" element={<RecommendFood />} />
+            <Route path="/map" element={<Map />} />
 
 
 

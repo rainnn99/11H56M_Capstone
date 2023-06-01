@@ -8,7 +8,7 @@ mydb = mysql.connector.connect(
     password="test",
 )
 mycursor = mydb.cursor()
-mycursor.execute("USE testdb")
+mycursor.execute("USE capstone_11h56m")
 
 
 # 커뮤니티_글작성
@@ -22,4 +22,4 @@ def community_writing():
     mycursor.execute(sql, val)
     mydb.commit()
 
-    return True
+    return

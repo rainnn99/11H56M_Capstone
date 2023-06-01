@@ -2,7 +2,10 @@ import { Calendar, Button } from 'antd';
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import MyModal from './MyModal';
+import MyNav2 from "./../MyNav2";
 import axios from 'axios';
+import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
+
 
 function MyCalendar() {
   const [visible, setVisible] = useState(false);
@@ -60,10 +63,10 @@ function MyCalendar() {
             Kcal: {dayData.reduce((sum, item) => sum + item.칼로리, 0)}
           </p>
            
-            <Button type="dashed" onClick={handleEdit} style={{ marginTop: 10, textAlign: "right" }}>수정</Button>
+            <Button type="default" onClick={handleEdit} style={{ marginTop: 10, textAlign: "right" }}>수정</Button>
           </div>
         ) : (
-          <Button type="dashed" onClick={() => handleSelect(value)} style={{ marginTop: 10, textAlign: "right" }}>추가</Button>
+          <Button type="default" onClick={() => handleSelect(value)} style={{ marginTop: 10, textAlign: "right" }}>추가</Button>
         )}
       </div>
     );
@@ -141,45 +144,69 @@ function MyCalendar() {
   }, []);
 
   return (
-    <div>
-      <div className="CalName">
-        <h1>이번 달 내가 먹은건?</h1>
-      </div>
-      <div>
-        <Calendar
-          style={{ maxWidth: '1100px', margin: '0 auto', border: 'none' }}
-          dateCellRender={dateCellRender}
-          headerRender={({ value, type, onChange }) => {
-            const currentYear = value.format('YYYY');
-            const currentMonth = value.format('M월');
-            setYear(currentYear);
-            setMonth(currentMonth);
-
-            return (
-              <div style={{ padding: 10, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div className="year" style={{ marginRight: 'auto' }}>{`${year}년 ${month}`}</div>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <Button type="ghost" style={{ borderColor: '#f78923', color: '#f78923', margin: '0 20px' }} onClick={() => onChange(value.clone().subtract(1, type))}>◀</Button>
-                  <Button type="ghost" style={{ borderColor: '#f78923', color: '#f78923' }} onClick={() => onChange(value.clone().add(1, type))}>▶</Button>
-                </div>
-              </div>
-            )
-          }}
-          onSelect={() => { }}
-        />
-
-        {selectedDate && (
-          <MyModal
-            visible={visible}
-            onCancel={handleCancel}
-            onSave={(newData) => saveData(selectedDate, newData)}
-            date={selectedDate}
-            data={data[selectedDate.format('YYYY-MM-DD')]}
-          />
-        )}
-      </div>
+    <div style={{  }}>
+  <div>
+    <MyNav2 />
+    <div className="CalName">
+      <h1>{` ${month}`}</h1>
     </div>
+    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+  <div style={{ flex: 1 }}>
+    <Calendar
+      style={{ maxWidth: '1000px', margin: '0 auto', border: 'none',marginLeft:'445px' }}
+      dateCellRender={dateCellRender}
+      headerRender={({ value, type, onChange }) => {
+        const currentYear = value.format('YYYY');
+        const currentMonth = value.format('M월');
+        setYear(currentYear);
+        setMonth(currentMonth);
+
+        return (
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div className="year" style={{ marginRight: 'auto' }}>{`${year}년`}</div>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <Button type="ghost" style={{ border: 'none', margin: '0 20px', fontSize: '30px', color: 'dodgerblue' }} onClick={() => onChange(value.clone().subtract(1, type))}><FiChevronLeft /></Button>
+              <Button type="ghost" style={{ border: 'none', fontSize: '30px', color: 'dodgerblue' }} onClick={() => onChange(value.clone().add(1, type))}><FiChevronRight /></Button>
+            </div>
+          </div>
+        )
+      }}
+      onSelect={() => { }}
+    />
+  </div>
+  <div style={{ position: 'relative', marginLeft: '400px' }}>
+    <img
+      src="/eat2.png"
+      style={{
+        width: '350px',
+        height: '370px',
+        position: 'absolute',
+        right: 0,
+        bottom: 0,
+      }}
+    />
+  </div>
+</div>
+
+
+
+
+
+    </div>
+    {selectedDate && (
+      <MyModal
+        visible={visible}
+        onCancel={handleCancel}
+        onSave={(newData) => saveData(selectedDate, newData)}
+        date={selectedDate}
+        data={data[selectedDate.format('YYYY-MM-DD')]}
+      />
+    )}
+  </div>
+</div>
+
   );
 }
-
+ 
 export default MyCalendar;

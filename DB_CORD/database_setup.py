@@ -30,13 +30,13 @@ import mysql.connector
 
 mydb = mysql.connector.connect(
     host="localhost",
-    user="",
-    password=""  # 비밀번호
+    user="test",
+    password="test"  # 비밀번호
 )
 
 mycursor = mydb.cursor()
-mycursor.execute("create database testdb;")  # 데이터베이스 만들기
-mycursor.execute("USE testdb")
+#mycursor.execute("create database testdb;")  # 데이터베이스 만들기
+mycursor.execute("USE capstone_11h56m")
 
 # 음식 테이블
 # ------------------------------------------------------
@@ -63,8 +63,7 @@ id VARCHAR(10) NOT NULL,\
 password VARCHAR(15),\
 name VARCHAR(20),\
 phone_number VARCHAR(20),\
-coupon VARCHAR(20),\
-login_count INT,\
+coupon INT DEFAULT 0,\
 CONSTRAINT customer_PK PRIMARY KEY(id)\
 );")
 # ------------------------------------------------------

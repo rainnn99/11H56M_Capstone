@@ -9,11 +9,12 @@ import sign_up
 import community_writing
 import community_list
 import json
+import coupon_count
+import receive_coupon
 
-app = Flask(__name__, template_folder='../static',
-            static_folder='../static', static_url_path='/')
+app = Flask(__name__, template_folder='../front/public',
+            static_folder='../front/public', static_url_path='/')
 app.secret_key = "lfko2dfk5-!fgkfiapvn4"
-
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -21,8 +22,7 @@ mydb = mysql.connector.connect(
     password="test",  # 비밀번호
 )
 mycursor = mydb.cursor()
-mycursor.execute("USE testdb")
-
+mycursor.execute("USE capstone_11h56m")
 
 #  홈화면
 @app.route('/')
@@ -32,6 +32,15 @@ def home():
     else:
         return render_template("index.html", login=0)
 
+#로그인된 ID 확인하기
+@app.route('/user')
+def return_id():
+    userid = session.get("id")
+    if userid is None:
+        return jsonify({"id" : None})
+    else:
+        return jsonify({"id" : userid})
+    
 
 # 로그인
 @app.route('/login', methods=["post"])
@@ -45,7 +54,7 @@ def login_check():
         return jsonify({'success': False})  # 실패
 
 # 로그아웃
-@app.route('/logout')
+@app.route('/logout', methods=["get"])
 def Logout():
     logout.logout()
     return render_template('index.html')
@@ -62,22 +71,26 @@ def Community_writing():
     userid = session.get("id")
     if userid != None:
         community_writing.community_writing()
+        
         return "True"
     else:
         return "False"
+
 
 # 커뮤니티_글목록
 @app.route("/community/lists", methods=['GET'])
 def Community_list():
     community_list_json = community_list.community_list()  # json 보내는 코드
+    
     return jsonify(community_list_json)
 
 # 음식추천
-@app.route('/recommendation/<userid>', methods=['GET'])
-def get_recommendation(userid):
-    response = []
+@app.route('/recommendation', methods=['GET'])
+def get_recommendation():
+    userid = session.get("id")
     response = recommendation.run_recommendation(userid)
-    return jsonify(response)
+
+    return response
 
 
 # 캘린더
@@ -96,6 +109,21 @@ def get_calender_by_userid_date(date):
     userid = session.get("id")
     response = calender_management.run_calender_get(userid, date)
     return response
+
+# 쿠폰 개수 조회
+@app.route('/coupon/count', methods=['GET'])
+def get_coupon_count():
+    userid = session.get("id")
+    coupon_num = coupon_count.countCoupon(userid)
+
+    return coupon_num
+
+# 쿠폰 받기
+@app.route('/coupon/receive', methods=['GET'])
+def receive_Coupon():
+    userid = session.get("id")
+    coupon_num = receive_coupon.receiveCoupon(userid)
+    return coupon_num
 
 if __name__ == '__main__':
     app.run(port=5000)

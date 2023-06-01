@@ -8,18 +8,18 @@ mydb = mysql.connector.connect(
     password="test",  # 비밀번호
 )
 mycursor = mydb.cursor()
-mycursor.execute("USE testdb")
+mycursor.execute("USE capstone_11h56m")
 
 # 로그인
 # 아이디 비밀번호 확인
 
-
 def login():
     login = request.json
+    id = login['id']
+    password = login['password']
+    sql = f"SELECT * FROM customer WHERE id = '{id}' AND password = '{password}'"
 
-    sql = "SELECT * FROM customer WHERE id = %s AND password = %s"
-    params = (login['id'], login['password'])
-    mycursor.execute(sql, params)
+    mycursor.execute(sql)
 
     user = mycursor.fetchone()
 

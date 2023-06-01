@@ -8,12 +8,12 @@ mydb = mysql.connector.connect(
     host="localhost",
     user="test",
     password="test",  # 비밀번호
-    database="testdb"
+    database="capstone_11h56m"
 )
 
 mycursor = mydb.cursor()
 
-food_data = pd.read_csv('food.csv')
+food_data = pd.read_csv('../food.csv')
 
 #부족한 영양정보 제공을위한 배열
 plethora = []
@@ -26,10 +26,10 @@ def get_dislike_food(userid):
     convert_data = [item[0] for item in dislike_food]
     return convert_data
 
-#mysql의 testdb의 calender table에서 user_id collum을 확인하여 최근 30개를 가져와 user_taken_food 변수에 저장하는 코드
+#mysql의 testdb의 calender table에서 user_id collum을 확인하여 최근 50개를 가져와 user_taken_food 변수에 저장하는 코드
 
 def get_taken_food(userid):
-    query = f"SELECT taken_food FROM calender WHERE user_id = '{userid}' ORDER BY day DESC LIMIT 30"
+    query = f"SELECT taken_food FROM calender WHERE user_id = '{userid}' ORDER BY day DESC LIMIT 50"
     mycursor.execute(query)
     taken_food = mycursor.fetchall()
     return taken_food
@@ -66,7 +66,6 @@ def get_nut(matched_rows_modified):
         if value > 0:
             plethora.append(index)
     lack_ratio = lack_ratio.astype(int)
-    print(plethora)
     return lack_ratio
 
 def remove_dislike_food(recommand, dislike):
@@ -74,7 +73,7 @@ def remove_dislike_food(recommand, dislike):
     return recommand_filtered
     
 # 부족한 영양소를 보완하는 음식 추천 함수(Knowledge-based Recommendation 사용)
-def recommend_food(taken_food, deficient_nutrients, lack_ratio, food_data, dislike_food, number=10):
+def recommend_food(taken_food, deficient_nutrients, lack_ratio, food_data, dislike_food, number=4):
     # 사용자의 최근 식사한 음식 데이터로 필터링
     filtered_foods = food_data[food_data['food_small_scale_classification'].isin(taken_food)]
 
@@ -127,9 +126,6 @@ def run_recommendation(userid):
     deficient_nutrients = ['protein_g', 'fat_g', 'carbohydrate_g']
     recommended_foods = recommend_food(taken_food, deficient_nutrients, lack_ratio, food_data, dislike_food)
     return_json = make_json(recommended_foods, lack_ratio)
-    print(return_json)
     return return_json
-
-#run_recommendation('aaa')
 
 #mycursor.close()

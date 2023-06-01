@@ -23,7 +23,7 @@ mydb = mysql.connector.connect(
     password="test",  # 비밀번호
 )
 mycursor = mydb.cursor()
-mycursor.execute("USE testdb")
+mycursor.execute("USE capstone_11h56m")
 
 
 # 회원가입

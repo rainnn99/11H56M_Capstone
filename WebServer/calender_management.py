@@ -8,7 +8,7 @@ mydb = mysql.connector.connect(
     host="localhost",
     user="test",
     password="test",
-    database="testdb"
+    database="capstone_11h56m"
 )
 mycursor = mydb.cursor()
 food_data = pd.read_csv('../food.csv')

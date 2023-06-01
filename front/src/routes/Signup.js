@@ -248,7 +248,7 @@ function SignUp() {
                 <button
                   type="submit"
                   value="가입하기"
-                  name="sigunup_btn"
+                  className="signupButton"
                   // onClick={handleSubmit}
                 >
                   가입하기

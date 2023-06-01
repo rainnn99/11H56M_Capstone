@@ -1,82 +1,110 @@
 import { Modal, Button } from "antd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function MyModal({ visible, onCancel, onSave, date, data }) {
   const [newData, setNewData] = useState(data || {});
+  const [breakfastMenu, setBreakfastMenu] = useState(""); // 아침메뉴
+  const [lunchMenu, setLunchMenu] = useState(""); // 점심메뉴
+  const [dinnerMenu, setDinnerMenu] = useState(""); // 저녁 메뉴
 
-  const handleChange = (e, key) => {
-    setNewData((prevData) => ({
-      ...prevData,
-      [key]: e.target.value,
-    }));
-  };
+
+  useEffect(() => {
+    setNewData(data || {});
+    setBreakfastMenu(data?.breakfast || "");
+    setLunchMenu(data?.lunch || "");
+    setDinnerMenu(data?.dinner || "");
+  }, [data]);
 
   const handleSave = () => {
-    onSave(newData);
+    const updatedData = {
+      ...newData,
+      breakfast: breakfastMenu,
+      lunch: lunchMenu,
+      dinner: dinnerMenu,
+    };
+    onSave(updatedData);
     setNewData({});
+    setBreakfastMenu("");
+    setLunchMenu("");
+    setDinnerMenu("");
     onCancel();
   };
 
   return (
     <Modal
-      title={date.format("YYYY년 MM월 DD일")}
+      title={date.format("MM월 DD일")}
       visible={visible}
       onCancel={onCancel}
-      footer={
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <div>
-            <div
-              className="breakfast"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                textAlign: "left",
-              }}
-            >
-              <p style={{ margin: 10 }}>아침</p>
-              <input
-                type="text"
-                value={newData.breakfast || ""}
-                onChange={(e) => handleChange(e, "breakfast")}
-              />
-            </div>
-            <div
-              className="lunch"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                textAlign: "left",
-              }}
-            >
-              <p style={{ margin: 10 }}>점심</p>
-              <input
-                type="text"
-                value={newData.lunch || ""}
-                onChange={(e) => handleChange(e, "lunch")}
-              />
-            </div>
-            <div
-              className="dinner"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                textAlign: "left",
-              }}
-            >
-              <p style={{ margin: 10 }}>저녁</p>
-              <input
-                type="text"
-                value={newData.dinner || ""}
-                onChange={(e) => handleChange(e, "dinner")}
-              />
-            </div>
-          </div>
-        </div>
-      }
+      footer={null}
+      centered
+      style={{ textAlign: "center" }}
     >
-      <Button onClick={handleSave} style={{ marginLeft: 10 }}>
+      <div style={{ display: "flex", flexDirection: "column", marginTop: 50, textAlign: "center"  }}>
+        <div
+          className="breakfast"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            textAlign: "center",
+            marginBottom: 10,
+            justifyContent: "center",
+          }}
+        >
+          <p style={{ margin: 0, marginRight: 10 }}>아침</p>
+          <input
+            type="text"
+            value={breakfastMenu}
+            onChange={(e) => setBreakfastMenu(e.target.value)}
+          />
+          
+
+        </div>
+        <div
+          className="lunch"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            textAlign: "center",
+            marginBottom: 10,
+            justifyContent: "center",
+          }}
+        >
+          <p style={{ margin: 0, marginRight: 10 }}>점심</p>
+          <input
+            type="text"
+            value={lunchMenu}
+            onChange={(e) => setLunchMenu(e.target.value)}
+          />
+          
+
+
+        </div>
+        <div
+          className="dinner"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            textAlign: "center",
+            marginBottom: 10,
+            justifyContent: "center", // 중앙 정렬
+          }}
+        >
+          <p style={{ margin: 0, marginRight: 10 }}>저녁</p>
+          <input
+            type="text"
+            value={dinnerMenu}
+            onChange={(e) => setDinnerMenu(e.target.value)}
+          />
+          
+
+        </div>
+        
+      </div>
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <Button onClick={handleSave} style={{ marginLeft: 10 }}>
           저장
         </Button>
+      </div>
     </Modal>
   );
 }
