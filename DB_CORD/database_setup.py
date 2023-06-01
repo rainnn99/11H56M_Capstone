@@ -63,8 +63,7 @@ id VARCHAR(10) NOT NULL,\
 password VARCHAR(15),\
 name VARCHAR(20),\
 phone_number VARCHAR(20),\
-coupon VARCHAR(20),\
-login_count INT,\
+coupon INT DEFAULT 0,\
 CONSTRAINT customer_PK PRIMARY KEY(id)\
 );")
 # ------------------------------------------------------
