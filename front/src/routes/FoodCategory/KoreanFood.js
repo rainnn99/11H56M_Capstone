@@ -136,5 +136,5 @@ function KoreanFood() {
     </div>
   );
 }
-
+// KoreanFood.js
 export default KoreanFood;
