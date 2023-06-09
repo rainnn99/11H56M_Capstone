@@ -31,7 +31,7 @@
 
 ## ⚙ 개발환경
 - `Java Script`, `python`
-- 사용 도구: React, MySQL
+- 사용 도구: React, MySQL, RestAPI
 - 개발 환경: Window
 - 개발 도구: VScode
 
