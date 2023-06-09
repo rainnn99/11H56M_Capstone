@@ -26,12 +26,18 @@
 <br>
 
 ## 📌 주요 기능
-### **메인페이지**<br>
+### - **메인페이지**<br>
  화면 우측 점들로 각 페이지별 소개를 보며 페이지를 이동할 수 있습니다. 로그인을 하면 로그인 버튼이 사용자가 로그인했던 id로 글자가 변경됩니다
+ 
 <br>
-<img src="![메인페이지](https://github.com/rainnn99/11H56M_Capstone/assets/102869025/ff201e19-be1d-4c1b-9c4b-56bde16a4b09)" width="700" height="370">
 
-- **로그인/회원가입페이지**
+![메인페이지](https://github.com/rainnn99/11H56M_Capstone/assets/102869025/97cf0e1c-4074-44cc-b018-adbae0e620df)
+
+<br>
+<br>
+
+### - **로그인/회원가입페이지**<br>
+<img src="" width="450" height="370">
 <br>
 
 - **쿠폰페이지: 사이트의 상업성을 목적으로 우측 하단 floating 아이콘을 클릭하면 쿠폰 페이지가 떠서 쿠폰을 발급받을 수 있습니다**
