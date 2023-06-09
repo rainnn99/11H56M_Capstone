@@ -29,7 +29,7 @@
 ### **메인페이지**<br>
  화면 우측 점들로 각 페이지별 소개를 보며 페이지를 이동할 수 있습니다. 로그인을 하면 로그인 버튼이 사용자가 로그인했던 id로 글자가 변경됩니다
 <br>
-<img src="C:\Users\ldy\Desktop\메인페이지.gif" width="700" height="370">
+<img src="![메인페이지](https://github.com/rainnn99/11H56M_Capstone/assets/102869025/ff201e19-be1d-4c1b-9c4b-56bde16a4b09)" width="700" height="370">
 
 - **로그인/회원가입페이지**
 <br>
