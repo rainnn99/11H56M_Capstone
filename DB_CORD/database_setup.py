@@ -100,9 +100,10 @@ user_id VARCHAR(12),\
 day DATE,\
 taken_food TEXT,\
 time INT,\
-CONSTRAINT calender_PK PRIMARY KEY(user_id),\
-CONSTRAINT calender_FK FOREIGN KEY (user_id) references customer(id)\
+CONSTRAINT calender_PK PRIMARY KEY(user_id, day, time),\
+CONSTRAINT calender_unique UNIQUE(user_id, day, time)\
 );")
+
 # ------------------------------------------------------
 
 
