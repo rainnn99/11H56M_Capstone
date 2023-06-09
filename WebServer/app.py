@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, session, request, redirect, j
 import sys
 import mysql.connector
 import recommendation
-import calender_management
+import calendar_management
 import login
 import logout
 import sign_up
@@ -33,7 +33,7 @@ def home():
         return render_template("index.html", login=0)
 
 #로그인된 ID 확인하기
-@app.route('/user')
+@app.route('/user', methods=["GET"])
 def return_id():
     userid = session.get("id")
     if userid is None:
@@ -43,7 +43,7 @@ def return_id():
     
 
 # 로그인
-@app.route('/login', methods=["post"])
+@app.route('/login', methods=["POST"])
 def login_check():
     Login = request.json
     returnvalue = login.login()
@@ -94,20 +94,20 @@ def get_recommendation():
 
 
 # 캘린더
-@app.route('/calender', methods=['POST'])
+@app.route('/calendar', methods=['POST'])
 def get_food_by_userid_date_time():
     userid = session.get("id")
     try:
     # 실행 로직
-        calender_management.run_calender_insert(userid)
+        calendar_management.run_calendar_insert(userid)
         return jsonify({'success': True})
     except:
         return jsonify({'success': False})
 
-@app.route('/calender/<date>', methods=['GET'])
+@app.route('/calendar/<date>', methods=['GET'])
 def get_calender_by_userid_date(date):
     userid = session.get("id")
-    response = calender_management.run_calender_get(userid, date)
+    response = calendar_management.run_calendar_get(userid, date)
     return response
 
 # 쿠폰 개수 조회

@@ -82,14 +82,14 @@ def make_json(input):
             json_data.append(json_row)
     return json.dumps(json_data, indent=4, ensure_ascii=False)
 
-def run_calender_get(userid, date):
+def run_calendar_get(userid, date):
     month_data = get_monthfoodinfo(date, userid)
     month_food_info = get_foodcal(month_data)
     return_arr = merge_foodcal(month_data, month_food_info)
     return_json = make_json(return_arr)
     return return_json
 
-def run_calender_insert(userid):
+def run_calendar_insert(userid):
     data = request.json
     date = data['날짜']
     success = True

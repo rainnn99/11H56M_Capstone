@@ -52,14 +52,14 @@ function PostList() {
   const renderPosts = currentPosts.map((post, index) => {
     const postNumber = indexOfFirstPost + index + 1;
     return (
-      <div key={post.id} className="post">
-        <p className="post-meta">
+      <div className="post">
+        
           <span className="post-num">{postNumber}</span>
           <span className="post-title" onClick={() => handlePostClick(post)}>
             {post.title}
           </span>
           <span className="post-author">{`작성자: ${post.userId}`}</span>
-        </p>
+        
       </div>
     );
   });

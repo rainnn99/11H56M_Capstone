@@ -82,7 +82,7 @@ function MyCalendar() {
       음식이름3: newData.dinner,
     };
   
-    axios.post('/calender', requestBody)
+    axios.post('/calendar', requestBody)
       .then(response => {
         const return_code = response.data;
         if (return_code.success) {
@@ -103,7 +103,7 @@ function MyCalendar() {
     const yearMonthString = `${year}${monthString}`;
 
     axios
-      .get(`/calender/${yearMonthString}`)
+      .get(`/calendar/${yearMonthString}`)
       .then((response) => {
         const receivedData = response.data;
         const transformedData = {};
@@ -154,7 +154,7 @@ function MyCalendar() {
     <div style={{ display: 'flex', justifyContent: 'center' }}>
   <div style={{ flex: 1 }}>
     <Calendar
-      style={{ maxWidth: '1000px', margin: '0 auto', border: 'none',marginLeft:'445px' }}
+      style={{ maxWidth: '1300px', margin: '0 auto', border: 'none',marginLeft:'445px' }}
       dateCellRender={dateCellRender}
       headerRender={({ value, type, onChange }) => {
         const currentYear = value.format('YYYY');
